@@ -1,3 +1,4 @@
+import 'package:SpaceXFlutterOdyssey/data/spacex_service/launch_service.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -53,6 +54,10 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   void _incrementCounter() {
+    final service = LaunchService();
+
+    service.getAllLaunches();
+
     setState(() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
