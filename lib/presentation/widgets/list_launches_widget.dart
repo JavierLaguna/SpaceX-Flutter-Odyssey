@@ -21,17 +21,30 @@ class ListLaunchesWidget extends StatelessWidget {
                   key: Key(launch.id),
                   clipBehavior: Clip.hardEdge,
                   shape: BeveledRectangleBorder(
-                      borderRadius: BorderRadius.circular(2)),
+                      borderRadius: BorderRadius.circular(8)),
                   elevation: 2,
                   margin: EdgeInsets.symmetric(vertical: 8, horizontal: 4),
-                  child: Column(
-                    children: [
-                      Image(
-                        image: NetworkImage(launch.patchImageSmall),
-                        fit: BoxFit.fill,
-                      ),
-                      Text(launch.name)
-                    ],
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        Image(
+                          image: NetworkImage(launch.patchImageSmall),
+                          fit: BoxFit.fill,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8.0),
+                          child: Text(
+                            launch.name,
+                            style: TextStyle(
+                                color: Colors.black87,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 );
               },
