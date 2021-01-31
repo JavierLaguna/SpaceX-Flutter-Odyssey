@@ -4,18 +4,18 @@ import 'package:flutter/material.dart';
 class ListLaunchesWidget extends StatelessWidget {
   final List<Launch> _launches;
 
-  ListLaunchesWidget(this._launches);
+  const ListLaunchesWidget(this._launches);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: _launches == null || _launches.isEmpty
           ? _EmptyListWidget()
           : ListView.builder(
               itemCount: _launches.length,
               itemBuilder: (context, index) {
-                var launch = _launches[index];
+                final launch = _launches[index];
 
                 return Card(
                   key: Key(launch.id),
@@ -23,7 +23,8 @@ class ListLaunchesWidget extends StatelessWidget {
                   shape: BeveledRectangleBorder(
                       borderRadius: BorderRadius.circular(8)),
                   elevation: 2,
-                  margin: EdgeInsets.symmetric(vertical: 8, horizontal: 4),
+                  margin:
+                      const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
@@ -36,7 +37,7 @@ class ListLaunchesWidget extends StatelessWidget {
                           padding: const EdgeInsets.only(top: 8.0),
                           child: Text(
                             launch.name,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 color: Colors.black87,
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold),
@@ -56,6 +57,6 @@ class ListLaunchesWidget extends StatelessWidget {
 class _EmptyListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return CircularProgressIndicator();
+    return const CircularProgressIndicator();
   }
 }

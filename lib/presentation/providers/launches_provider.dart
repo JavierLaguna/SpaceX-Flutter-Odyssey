@@ -17,9 +17,9 @@ class LaunchesProvider with ChangeNotifier {
 
   String get errorMessage => _errorMessage;
 
-  void getLaunches() async {
+  Future<void> getLaunches() async {
     try {
-      var launchesList = await _getLaunchesInteractor();
+      final launchesList = await _getLaunchesInteractor();
       _launches = launchesList.launches;
     } catch (e) {
       _errorMessage = e.toString();

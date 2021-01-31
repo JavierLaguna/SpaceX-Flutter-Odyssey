@@ -29,8 +29,9 @@ class Launch {
   });
 
   factory Launch.fromMap(Map<String, dynamic> map) {
-    var links = map['links'] as Map<String, dynamic>;
-    var patches = links['patch'] as Map<String, dynamic>;
+    final links = map['links'] as Map<String, dynamic>;
+    final patches = links['patch'] as Map<String, dynamic>;
+
     return Launch(
         flightNumber: map['flight_number'],
         name: map['name'],

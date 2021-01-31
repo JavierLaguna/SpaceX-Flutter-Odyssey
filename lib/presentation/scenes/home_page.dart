@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var launchesProvider = context.watch<LaunchesProvider>();
+    final launchesProvider = context.watch<LaunchesProvider>();
 
     return Scaffold(
       body: SafeArea(
