@@ -18,7 +18,21 @@ class ListLaunchesWidget extends StatelessWidget {
                 var launch = _launches[index];
 
                 return Card(
-                  child: Text(launch.name),
+                  key: Key(launch.id),
+                  clipBehavior: Clip.hardEdge,
+                  shape: BeveledRectangleBorder(
+                      borderRadius: BorderRadius.circular(2)),
+                  elevation: 2,
+                  margin: EdgeInsets.symmetric(vertical: 8, horizontal: 4),
+                  child: Column(
+                    children: [
+                      Image(
+                        image: NetworkImage(launch.patchImageSmall),
+                        fit: BoxFit.fill,
+                      ),
+                      Text(launch.name)
+                    ],
+                  ),
                 );
               },
             ),
