@@ -1,3 +1,4 @@
+import 'package:SpaceXFlutterOdyssey/data/repository/launchRepositoryImpl.dart';
 import 'package:SpaceXFlutterOdyssey/data/spacex_service/launch_service.dart';
 import 'package:flutter/material.dart';
 
@@ -55,8 +56,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _incrementCounter() async {
     final service = LaunchService();
-
-    var lan = await service.getAllLaunches();
+    final repo = LaunchRepositoryImpl(service);
+    var lan = await repo.getAllLaunches();
 
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -107,7 +108,10 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Text(
               '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .headline4,
             ),
           ],
         ),
