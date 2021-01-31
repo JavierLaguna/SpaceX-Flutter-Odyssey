@@ -12,6 +12,8 @@ class Launch {
   final String launchDateUTC;
   final DateTime launchDateLocal;
   final bool success;
+  final String patchImageSmall;
+  final String patchImageLarge;
 
   Launch({
     @required this.flightNumber,
@@ -22,16 +24,23 @@ class Launch {
     @required this.launchDateUTC,
     @required this.launchDateLocal,
     @required this.success,
+    @required this.patchImageSmall,
+    @required this.patchImageLarge,
   });
 
-  factory Launch.fromMap(Map<String, dynamic> json) => Launch(
-        flightNumber: json['flight_number'],
-        name: json['name'],
-        id: json['id'],
-        upcoming: json['upcoming'],
-        launchDateUnix: json['static_fire_date_unix'],
-        launchDateUTC: json['static_fire_date_utc'],
-        launchDateLocal: DateTime.parse(json['date_local']),
-        success: json['success'],
-      );
+  factory Launch.fromMap(Map<String, dynamic> map) {
+    var links = map['links'] as Map<String, dynamic>;
+    var patches = links['patch'] as Map<String, dynamic>;
+    return Launch(
+        flightNumber: map['flight_number'],
+        name: map['name'],
+        id: map['id'],
+        upcoming: map['upcoming'],
+        launchDateUnix: map['static_fire_date_unix'],
+        launchDateUTC: map['static_fire_date_utc'],
+        launchDateLocal: DateTime.parse(map['date_local']),
+        success: map['success'],
+        patchImageSmall: patches['small'],
+        patchImageLarge: patches['large']);
+  }
 }
