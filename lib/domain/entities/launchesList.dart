@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'package:SpaceXFlutterOdyssey/data/models/launch.dart';
 import 'package:meta/meta.dart';
+import 'launch.dart';
 
 LaunchesList launchesListFromJson(String str) =>
     LaunchesList.fromJson(json.decode(str));

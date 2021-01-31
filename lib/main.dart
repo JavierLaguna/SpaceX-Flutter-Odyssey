@@ -1,6 +1,6 @@
-import 'package:SpaceXFlutterOdyssey/data/repository/launchRepositoryImpl.dart';
-import 'package:SpaceXFlutterOdyssey/data/spacex_service/launch_service.dart';
 import 'package:flutter/material.dart';
+import 'domain/repository/launchRepositoryImpl.dart';
+import 'domain/spacex_service/launch_service.dart';
 
 void main() {
   runApp(MyApp());
@@ -108,10 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Text(
               '$_counter',
-              style: Theme
-                  .of(context)
-                  .textTheme
-                  .headline4,
+              style: Theme.of(context).textTheme.headline4,
             ),
           ],
         ),

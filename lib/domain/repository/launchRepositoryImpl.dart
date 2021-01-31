@@ -1,6 +1,5 @@
-import 'package:SpaceXFlutterOdyssey/data/models/launchesList.dart';
-import 'package:SpaceXFlutterOdyssey/data/spacex_service/launch_service.dart';
-
+import 'package:SpaceXFlutterOdyssey/domain/entities/launchesList.dart';
+import 'package:SpaceXFlutterOdyssey/domain/spacex_service/launch_service.dart';
 import 'launchRepository.dart';
 
 class LaunchRepositoryImpl extends LaunchRepository {

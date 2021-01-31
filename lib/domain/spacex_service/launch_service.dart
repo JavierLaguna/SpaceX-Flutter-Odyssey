@@ -1,4 +1,4 @@
-import 'package:SpaceXFlutterOdyssey/data/models/launchesList.dart'
+import 'package:SpaceXFlutterOdyssey/domain/entities/launchesList.dart'
     as LaunchesList;
 import 'package:http/http.dart' as http;
 
