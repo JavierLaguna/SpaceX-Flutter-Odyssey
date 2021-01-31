@@ -31,7 +31,7 @@ class Launch {
         upcoming: json['upcoming'],
         launchDateUnix: json['static_fire_date_unix'],
         launchDateUTC: json['static_fire_date_utc'],
-        launchDateLocal: json['date_local'],
+        launchDateLocal: DateTime.parse(json['date_local']),
         success: json['success'],
       );
 }
