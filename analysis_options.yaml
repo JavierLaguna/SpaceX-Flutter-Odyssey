@@ -2,8 +2,8 @@ include: package:lint/analysis_options.yaml
 
 analyzer:
   strong-mode:
-    implicit-casts: false
-    implicit-dynamic: false
+    implicit-casts: true
+    implicit-dynamic: true
 
 linter:
   rules:
@@ -14,6 +14,6 @@ linter:
     no_runtimeType_toString: false
     # Of course the comparison of unrelated should return false
     unrelated_type_equality_checks: false
-    # better to have this deactivetd for beginners
+    # better to have this deactivated for beginners
     prefer_const_constructors: true
     avoid_classes_with_only_static_members: false

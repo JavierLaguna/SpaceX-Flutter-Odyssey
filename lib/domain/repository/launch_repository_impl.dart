@@ -1,6 +1,6 @@
-import 'package:SpaceXFlutterOdyssey/domain/entities/launchesList.dart';
+import 'package:SpaceXFlutterOdyssey/domain/entities/launches_list.dart';
 import 'package:SpaceXFlutterOdyssey/domain/spacex_service/launch_service.dart';
-import 'launchRepository.dart';
+import 'launch_repository.dart';
 
 class LaunchRepositoryImpl extends LaunchRepository {
   final LaunchService _launchService;
@@ -9,7 +9,7 @@ class LaunchRepositoryImpl extends LaunchRepository {
 
   @override
   Future<LaunchesList> getAllLaunches() async {
-    var launches = await _launchService.getAllLaunches();
+    final launches = await _launchService.getAllLaunches();
     return launches;
   }
 }
