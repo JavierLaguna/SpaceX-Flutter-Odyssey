@@ -1,13 +1,14 @@
 import 'package:SpaceXFlutterOdyssey/domain/entities/launchesList.dart';
-import 'package:SpaceXFlutterOdyssey/domain/spacex_service/launch_service.dart';
+import 'package:SpaceXFlutterOdyssey/domain/repository/launchRepository.dart';
 
 class GetLaunchesInteractor {
-  final LaunchService _launchService;
+  final LaunchRepository _launchRepository;
 
-  GetLaunchesInteractor(this._launchService) : assert(_launchService != null);
+  GetLaunchesInteractor(this._launchRepository)
+      : assert(_launchRepository != null);
 
   Future<LaunchesList> call() async {
-    var launches = await _launchService.getAllLaunches();
+    var launches = await _launchRepository.getAllLaunches();
     return launches;
   }
 }
