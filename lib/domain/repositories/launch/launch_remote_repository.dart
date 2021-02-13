@@ -1,5 +1,5 @@
 import 'package:SpaceXFlutterOdyssey/domain/entities/launches_list.dart';
 
-abstract class LaunchRepository {
+abstract class LaunchRepositoryRemote {
   Future<LaunchesList> getAllLaunches();
 }
