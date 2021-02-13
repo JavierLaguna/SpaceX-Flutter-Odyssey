@@ -1,6 +1,6 @@
 import 'package:SpaceXFlutterOdyssey/di/injector.dart';
 import 'package:SpaceXFlutterOdyssey/presentation/providers/launches_provider.dart';
-import 'package:SpaceXFlutterOdyssey/presentation/scenes/home_page.dart';
+import 'package:SpaceXFlutterOdyssey/presentation/scenes/home_scene.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
