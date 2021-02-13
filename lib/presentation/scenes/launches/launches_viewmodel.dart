@@ -18,6 +18,6 @@ class LaunchesViewModel extends GetxController {
 
   _getLaunches() async {
     final launches = await _getLaunchesInteractor.get();
-    this.launches.assignAll(launches.launches);
+    this.launches.assignAll(launches);
   }
 }

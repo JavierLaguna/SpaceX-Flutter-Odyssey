@@ -1,8 +1,8 @@
-import 'package:SpaceXFlutterOdyssey/domain/entities/launches_list.dart';
+import 'package:SpaceXFlutterOdyssey/domain/entities/launch.dart';
 import 'package:SpaceXFlutterOdyssey/domain/repositories/launch/launch_remote_repository.dart';
 
 abstract class GetLaunchesInteractor {
-  Future<LaunchesList> get();
+  Future<List<Launch>> get();
 }
 
 class GetLaunchesInteractorImpl extends GetLaunchesInteractor {
@@ -12,7 +12,7 @@ class GetLaunchesInteractorImpl extends GetLaunchesInteractor {
       : assert(_launchRepositoryRemote != null);
 
   @override
-  Future<LaunchesList> get() async {
+  Future<List<Launch>> get() async {
     final launches = await _launchRepositoryRemote.getAllLaunches();
     return launches;
   }

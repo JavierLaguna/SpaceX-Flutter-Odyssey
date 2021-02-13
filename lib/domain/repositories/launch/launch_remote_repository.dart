@@ -1,5 +1,5 @@
-import 'package:SpaceXFlutterOdyssey/domain/entities/launches_list.dart';
+import 'package:SpaceXFlutterOdyssey/domain/entities/launch.dart';
 
 abstract class LaunchRepositoryRemote {
-  Future<LaunchesList> getAllLaunches();
+  Future<List<Launch>> getAllLaunches();
 }
