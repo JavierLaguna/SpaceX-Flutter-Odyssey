@@ -1,13 +1,10 @@
-import 'package:SpaceXFlutterOdyssey/di/injector.dart';
-import 'package:SpaceXFlutterOdyssey/presentation/providers/launches_provider.dart';
-import 'package:SpaceXFlutterOdyssey/presentation/scenes/home_page.dart';
+import 'package:SpaceXFlutterOdyssey/di/main_injector.dart';
+import 'package:SpaceXFlutterOdyssey/presentation/routes/spacex_routes.dart';
+import 'package:SpaceXFlutterOdyssey/presentation/routes/spacex_scenes.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
-import 'package:provider/provider.dart';
+import 'package:get/get.dart';
 
 void main() {
-  setUpDI();
-
   runApp(MyApp());
 }
 
@@ -15,19 +12,16 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-            create: (context) => GetIt.I<LaunchesProvider>()..getLaunches())
-      ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Space X Flutter Odyssey',
-        theme: ThemeData(
-          primarySwatch: Colors.orange,
-        ),
-        home: HomePage(),
+    return GetMaterialApp(
+      enableLog: true,
+      debugShowCheckedModeBanner: true,
+      theme: ThemeData(
+        primarySwatch: Colors.orange,
       ),
+      title: 'Space X Flutter Odyssey',
+      initialBinding: MainInjector(),
+      initialRoute: SpaceXRoutes.launches,
+      getPages: SpaceXScenes.scenes,
     );
   }
 }
