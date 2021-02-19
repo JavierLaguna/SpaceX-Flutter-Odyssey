@@ -1,6 +1,7 @@
 import 'package:SpaceXFlutterOdyssey/di/main_injector.dart';
 import 'package:SpaceXFlutterOdyssey/presentation/routes/spacex_routes.dart';
 import 'package:SpaceXFlutterOdyssey/presentation/routes/spacex_scenes.dart';
+import 'package:SpaceXFlutterOdyssey/presentation/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,12 +16,10 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       enableLog: true,
       debugShowCheckedModeBanner: true,
-      theme: ThemeData(
-        primarySwatch: Colors.orange,
-      ),
+      theme: spaceXLightTheme,
       title: 'Space X Flutter Odyssey',
       initialBinding: MainInjector(),
-      initialRoute: SpaceXRoutes.launches,
+      initialRoute: SpaceXRoutes.splash,
       getPages: SpaceXScenes.scenes,
     );
   }
