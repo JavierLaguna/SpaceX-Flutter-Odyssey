@@ -12,16 +12,18 @@ class ListLaunchesWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: _launches == null || _launches.isEmpty
           ? _EmptyListWidget()
-          : ListView.builder(
+          : GridView.builder(
+              gridDelegate:
+                  SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
               itemCount: _launches.length,
               itemBuilder: (context, index) {
                 final launch = _launches[index];
 
                 return Card(
                   key: Key(launch.id),
-                  clipBehavior: Clip.hardEdge,
+                  clipBehavior: Clip.antiAlias,
                   shape: BeveledRectangleBorder(
-                      borderRadius: BorderRadius.circular(8)),
+                      borderRadius: BorderRadius.circular(10)),
                   elevation: 2,
                   margin:
                       const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
@@ -29,9 +31,11 @@ class ListLaunchesWidget extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
                       children: [
-                        Image(
-                          image: NetworkImage(launch.patchImageSmall),
-                          fit: BoxFit.fill,
+                        Expanded(
+                          child: Image(
+                            image: NetworkImage(launch.patchImageSmall),
+                            fit: BoxFit.fill,
+                          ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 8.0),

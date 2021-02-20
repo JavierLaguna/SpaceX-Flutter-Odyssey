@@ -3,12 +3,16 @@ import 'package:SpaceXFlutterOdyssey/presentation/widgets/list_launches_widget.d
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class LaunchesScene extends StatelessWidget {
+class LaunchesScene extends GetWidget<LaunchesViewModel> {
+
+  LaunchesViewModel get _viewModel => super.controller;
+
   @override
   Widget build(BuildContext context) {
-    final _viewModel = Get.find<LaunchesViewModel>();
-
     return Scaffold(
+      appBar: AppBar(
+        title: Text('SpaceX Launches'),
+      ),
       body: SafeArea(
         bottom: false,
         child: Obx(() => ListLaunchesWidget(_viewModel.launches.value)),
