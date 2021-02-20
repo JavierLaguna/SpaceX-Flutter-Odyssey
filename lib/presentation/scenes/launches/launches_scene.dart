@@ -10,6 +10,9 @@ class LaunchesScene extends GetWidget<LaunchesViewModel> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('SpaceX Launches'),
+      ),
       body: SafeArea(
         bottom: false,
         child: Obx(() => ListLaunchesWidget(_viewModel.launches.value)),

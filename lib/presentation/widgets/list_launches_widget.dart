@@ -21,9 +21,9 @@ class ListLaunchesWidget extends StatelessWidget {
 
                 return Card(
                   key: Key(launch.id),
-                  clipBehavior: Clip.hardEdge,
+                  clipBehavior: Clip.antiAlias,
                   shape: BeveledRectangleBorder(
-                      borderRadius: BorderRadius.circular(8)),
+                      borderRadius: BorderRadius.circular(10)),
                   elevation: 2,
                   margin:
                       const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
