@@ -1,8 +1,10 @@
+import 'package:SpaceXFlutterOdyssey/presentation/scenes/splash/splash_viewmodel.dart';
 import 'package:SpaceXFlutterOdyssey/presentation/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class SplashScene extends StatelessWidget {
+class SplashScene extends GetWidget<SplashViewModel> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,11 +14,11 @@ class SplashScene extends StatelessWidget {
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               stops: [
-                0.05,
+                0.1,
                 1
               ],
               colors: [
-                SpaceXColors.secondaryText,
+                SpaceXColors.gray,
                 SpaceXColors.orange,
               ]),
         ),
