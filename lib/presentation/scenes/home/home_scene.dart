@@ -10,6 +10,7 @@ class HomeScene extends GetWidget<HomeViewModel> {
     return Obx(
       () => Scaffold(
         bottomNavigationBar: BottomNavigationBar(
+          showUnselectedLabels: false,
           currentIndex: _viewModel.currentIndex.value,
           onTap: _viewModel.changeScene,
           items: [
