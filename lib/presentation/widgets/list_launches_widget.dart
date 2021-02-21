@@ -61,6 +61,8 @@ class ListLaunchesWidget extends StatelessWidget {
 class _EmptyListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return const CircularProgressIndicator();
+    return Center(
+      child: const CircularProgressIndicator(),
+    );
   }
 }
