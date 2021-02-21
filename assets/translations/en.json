@@ -1,0 +1,12 @@
+{
+  "home": {
+    "tabs": {
+      "launches": "Launches",
+      "rockets": "Rockets",
+      "settings": "Settings"
+    }
+  },
+  "launches": {
+    "title": "SpaceX Launches"
+  }
+}

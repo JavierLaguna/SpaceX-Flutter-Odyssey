@@ -26,5 +26,6 @@ final spaceXLightTheme = ThemeData(
   ),
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
     selectedItemColor: SpaceXColors.orange,
+    unselectedItemColor: SpaceXColors.blueGray
   ),
 );
