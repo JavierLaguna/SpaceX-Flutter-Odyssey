@@ -1,4 +1,4 @@
-import 'package:SpaceXFlutterOdyssey/domain/Interactors/get_launches_interactor.dart';
+import 'package:SpaceXFlutterOdyssey/domain/interactors/launches/get_launches_interactor.dart';
 import 'package:SpaceXFlutterOdyssey/domain/entities/launch.dart';
 import 'package:get/get.dart';
 

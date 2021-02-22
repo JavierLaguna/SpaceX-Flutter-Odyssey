@@ -17,6 +17,7 @@ class SpaceXColors {
 
 final spaceXLightTheme = ThemeData(
   accentColor: SpaceXColors.blueGray,
+  toggleableActiveColor: SpaceXColors.orange,
   textTheme: GoogleFonts.ralewayTextTheme().apply(
     bodyColor: SpaceXColors.darkGray,
     displayColor: SpaceXColors.darkGray,

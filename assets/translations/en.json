@@ -8,5 +8,9 @@
   },
   "launches": {
     "title": "SpaceX Launches"
+  },
+  "settings": {
+    "title": "Settings",
+    "darkModeLabel": "Dark mode"
   }
 }
