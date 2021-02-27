@@ -1,3 +1,4 @@
+import 'package:SpaceXFlutterOdyssey/domain/entities/spacex_theme.dart';
 import 'package:SpaceXFlutterOdyssey/domain/repositories/device/device_repository.dart';
 import 'package:SpaceXFlutterOdyssey/domain/repositories/preferences/preferences_local_repository.dart';
 
@@ -14,7 +15,14 @@ class GetThemeInteractorImpl extends GetThemeInteractor {
 
   @override
   Future<bool> usesDarkMode() async {
-    final usesDarkMode = await _repositoryLocal.getUsesDarkMode();
-    return usesDarkMode;
+    final theme = await _repositoryLocal.getTheme();
+
+    if (theme == SpaceXTheme.unknown) {
+      final deviceUseDarkMode =
+          await _deviceRepository.isDeviceDarkModeEnabled();
+      return deviceUseDarkMode;
+    }
+
+    return theme == SpaceXTheme.dark;
   }
 }

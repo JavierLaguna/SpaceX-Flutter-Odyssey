@@ -1,5 +1,7 @@
-abstract class PreferencesRepositoryLocal {
-  Future<bool> getUsesDarkMode();
+import 'package:SpaceXFlutterOdyssey/domain/entities/spacex_theme.dart';
 
-  Future<void> setUsesDarkMode(bool useDarkMode);
+abstract class PreferencesRepositoryLocal {
+  Future<SpaceXTheme> getTheme();
+
+  Future<void> setTheme(SpaceXTheme theme);
 }
