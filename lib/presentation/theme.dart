@@ -12,21 +12,64 @@ class SpaceXColors {
   static final lightGray = Color(0xFFBDBDBD); // Divider
   static final gray = Color(0xFF757575); // Secondary text
   static final darkGray = Color(0xFF212121); // Primary text
+  static final darkGray2 = Color(0xFF323232);
+
   static final blueGray = Color(0xFF607D8B); // Accent
+  static final darkBlueGray = Color(0xFF263238);
 }
+
+final _lightTextTheme = GoogleFonts.ralewayTextTheme().apply(
+  bodyColor: SpaceXColors.darkGray,
+  displayColor: SpaceXColors.darkGray,
+);
+
+final _darkTextTheme = GoogleFonts.ralewayTextTheme().apply(
+  bodyColor: SpaceXColors.white,
+  displayColor: SpaceXColors.white,
+);
 
 final spaceXLightTheme = ThemeData(
   accentColor: SpaceXColors.blueGray,
   toggleableActiveColor: SpaceXColors.orange,
-  textTheme: GoogleFonts.ralewayTextTheme().apply(
-    bodyColor: SpaceXColors.darkGray,
-    displayColor: SpaceXColors.darkGray,
-  ),
+  textTheme: _lightTextTheme,
   appBarTheme: AppBarTheme(
     color: SpaceXColors.orange,
+    textTheme: _lightTextTheme.copyWith(
+      headline6: TextStyle(
+        fontSize: 19,
+        fontWeight: FontWeight.w700,
+        color: SpaceXColors.white,
+      ),
+    ),
   ),
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
     selectedItemColor: SpaceXColors.orange,
-    unselectedItemColor: SpaceXColors.blueGray
+    unselectedItemColor: SpaceXColors.blueGray,
+  ),
+);
+
+final spaceXDarkTheme = ThemeData(
+  accentColor: SpaceXColors.darkOrange,
+  toggleableActiveColor: SpaceXColors.darkOrange,
+  textTheme: _darkTextTheme,
+  appBarTheme: AppBarTheme(
+    color: SpaceXColors.darkOrange,
+    textTheme: _darkTextTheme.copyWith(
+      headline6: TextStyle(
+        fontSize: 19,
+        fontWeight: FontWeight.w700,
+        color: SpaceXColors.darkGray,
+      ),
+    ),
+  ),
+  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    selectedItemColor: SpaceXColors.darkOrange,
+    unselectedItemColor: SpaceXColors.lightGray,
+    backgroundColor: SpaceXColors.darkBlueGray,
+  ),
+  backgroundColor: SpaceXColors.darkGray,
+  scaffoldBackgroundColor: SpaceXColors.darkGray,
+  cardTheme: CardTheme(
+    color: SpaceXColors.darkGray2,
   ),
 );

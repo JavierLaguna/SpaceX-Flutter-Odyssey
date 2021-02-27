@@ -23,6 +23,6 @@ class SetThemeInteractorImpl extends SetThemeInteractor {
 
   _modifyAppTheme(SpaceXTheme theme) {
     Get.changeTheme(
-        theme == SpaceXTheme.dark ? spaceXLightTheme : spaceXLightTheme);
+        theme == SpaceXTheme.dark ? spaceXDarkTheme : spaceXLightTheme);
   }
 }

@@ -23,7 +23,8 @@ class ListLaunchesWidget extends StatelessWidget {
                   key: Key(launch.id),
                   clipBehavior: Clip.antiAlias,
                   shape: BeveledRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                   elevation: 2,
                   margin:
                       const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
@@ -42,12 +43,12 @@ class ListLaunchesWidget extends StatelessWidget {
                           child: Text(
                             launch.name,
                             style: const TextStyle(
-                                color: Colors.black87,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
                             overflow: TextOverflow.ellipsis,
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
