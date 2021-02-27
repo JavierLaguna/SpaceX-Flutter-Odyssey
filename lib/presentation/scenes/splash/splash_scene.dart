@@ -28,15 +28,8 @@ class SplashScene extends GetWidget<SplashViewModel> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Image.asset('assets/images/spacex-patch.png'),
               Image.asset('assets/images/spacex-logo.png'),
-              Text(
-                'Flutter Odyssey',
-                textAlign: TextAlign.center,
-                style: Theme.of(context)
-                    .textTheme
-                    .headline3
-                    .copyWith(fontWeight: FontWeight.bold),
-              )
             ],
           ),
         ),
