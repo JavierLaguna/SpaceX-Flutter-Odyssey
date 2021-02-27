@@ -15,7 +15,12 @@ class LaunchesScene extends GetWidget<LaunchesViewModel> {
       ),
       body: SafeArea(
         bottom: false,
-        child: Obx(() => ListLaunchesWidget(_viewModel.launches.value)),
+        child: Obx(
+          () => ListLaunchesWidget(
+            launches: _viewModel.launches.value,
+            onTapLaunch: _viewModel.onSelectLaunch,
+          ),
+        ),
       ),
     );
   }

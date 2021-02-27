@@ -4,6 +4,7 @@ import 'package:SpaceXFlutterOdyssey/di/settings/settings_injector.dart';
 import 'package:SpaceXFlutterOdyssey/di/splash/splash_injector.dart';
 import 'package:SpaceXFlutterOdyssey/presentation/routes/spacex_routes.dart';
 import 'package:SpaceXFlutterOdyssey/presentation/scenes/home/home_scene.dart';
+import 'package:SpaceXFlutterOdyssey/presentation/scenes/launchDetail/launch_detail_scene.dart';
 import 'package:SpaceXFlutterOdyssey/presentation/scenes/launches/launches_scene.dart';
 import 'package:SpaceXFlutterOdyssey/presentation/scenes/splash/splash_scene.dart';
 import 'package:get/get.dart';
@@ -29,6 +30,10 @@ class SpaceXScenes {
       name: SpaceXRoutes.launches,
       page: () => LaunchesScene(),
       binding: LaunchesInjector(),
+    ),
+    GetPage(
+      name: SpaceXRoutes.launchDetail,
+      page: () => LaunchDetailScene(),
     ),
   ];
 }
