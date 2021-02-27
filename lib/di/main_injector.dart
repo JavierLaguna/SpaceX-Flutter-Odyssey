@@ -4,6 +4,7 @@ import 'package:SpaceXFlutterOdyssey/data/repositories/launch/launch_repository_
 import 'package:SpaceXFlutterOdyssey/data/repositories/preferences/preferences_repository_local_impl.dart';
 import 'package:SpaceXFlutterOdyssey/domain/interactors/launches/get_launches_interactor.dart';
 import 'package:SpaceXFlutterOdyssey/domain/interactors/preferences/get_theme_interactor.dart';
+import 'package:SpaceXFlutterOdyssey/domain/interactors/preferences/set_theme_interactor.dart';
 import 'package:SpaceXFlutterOdyssey/domain/repositories/device/device_repository.dart';
 import 'package:SpaceXFlutterOdyssey/domain/repositories/launch/launch_remote_repository.dart';
 import 'package:SpaceXFlutterOdyssey/domain/repositories/preferences/preferences_local_repository.dart';
@@ -47,6 +48,10 @@ class MainInjector extends Bindings {
 
     Get.lazyPut<GetThemeInteractor>(() => GetThemeInteractorImpl(
           Get.find<DeviceRepository>(),
+          Get.find<PreferencesRepositoryLocal>(),
+        ));
+
+    Get.lazyPut<SetThemeInteractor>(() => SetThemeInteractorImpl(
           Get.find<PreferencesRepositoryLocal>(),
         ));
   }
