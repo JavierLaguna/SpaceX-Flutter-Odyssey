@@ -1,6 +1,7 @@
 import 'package:SpaceXFlutterOdyssey/domain/entities/spacex_theme.dart';
 import 'package:SpaceXFlutterOdyssey/domain/repositories/preferences/preferences_local_repository.dart';
 import 'package:SpaceXFlutterOdyssey/presentation/theme.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 abstract class SetThemeInteractor {
@@ -17,8 +18,21 @@ class SetThemeInteractorImpl extends SetThemeInteractor {
   Future<void> setDarkMode(bool useDarkMode) async {
     final selectedTheme = useDarkMode ? SpaceXTheme.dark : SpaceXTheme.light;
 
+    _modifyStatusBarColor(selectedTheme);
     _modifyAppTheme(selectedTheme);
     await _repositoryLocal.setTheme(selectedTheme);
+  }
+
+  _modifyStatusBarColor(SpaceXTheme theme) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
+      statusBarColor: theme == SpaceXTheme.dark // Color for Android
+          ? spaceXDarkTheme.appBarTheme.color
+          : spaceXLightTheme.appBarTheme.color,
+      statusBarBrightness:
+          theme == SpaceXTheme.dark // Dark == white status bar -- for IOS.
+              ? Brightness.light
+              : Brightness.dark,
+    ));
   }
 
   _modifyAppTheme(SpaceXTheme theme) {
