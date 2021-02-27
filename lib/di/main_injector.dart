@@ -47,14 +47,14 @@ class MainInjector extends Bindings {
           Get.find<LaunchRepositoryRemote>(),
         ));
 
-    Get.lazyPut<GetThemeInteractor>(() => GetThemeInteractorImpl(
-          Get.find<DeviceRepository>(),
-          Get.find<PreferencesRepositoryLocal>(),
-        ));
+    Get.put<GetThemeInteractor>(GetThemeInteractorImpl(
+      Get.find<DeviceRepository>(),
+      Get.find<PreferencesRepositoryLocal>(),
+    ));
 
-    Get.lazyPut<SetThemeInteractor>(() => SetThemeInteractorImpl(
-          Get.find<PreferencesRepositoryLocal>(),
-        ));
+    Get.put<SetThemeInteractor>(SetThemeInteractorImpl(
+      Get.find<PreferencesRepositoryLocal>(),
+    ));
 
     Get.lazyPut<InitAppInteractor>(() => InitAppInteractorImpl(
           Get.find<GetThemeInteractor>(),
