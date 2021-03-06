@@ -15,6 +15,7 @@ class Launch {
   final String patchImageSmall;
   final String patchImageLarge;
   final String details;
+  final String youtubeId;
 
   Launch({
     @required this.flightNumber,
@@ -28,6 +29,7 @@ class Launch {
     @required this.patchImageSmall,
     @required this.patchImageLarge,
     @required this.details,
+    @required this.youtubeId,
   });
 
   factory Launch.fromMap(Map<String, dynamic> map) {
@@ -35,16 +37,18 @@ class Launch {
     final patches = links['patch'] as Map<String, dynamic>;
 
     return Launch(
-        flightNumber: map['flight_number'],
-        name: map['name'],
-        id: map['id'],
-        upcoming: map['upcoming'],
-        launchDateUnix: map['static_fire_date_unix'],
-        launchDateUTC: map['static_fire_date_utc'],
-        launchDateLocal: DateTime.parse(map['date_local']),
-        success: map['success'],
-        patchImageSmall: patches['small'],
-        patchImageLarge: patches['large'],
-        details: map['details']);
+      flightNumber: map['flight_number'],
+      name: map['name'],
+      id: map['id'],
+      upcoming: map['upcoming'],
+      launchDateUnix: map['static_fire_date_unix'],
+      launchDateUTC: map['static_fire_date_utc'],
+      launchDateLocal: DateTime.parse(map['date_local']),
+      success: map['success'],
+      patchImageSmall: patches['small'],
+      patchImageLarge: patches['large'],
+      details: map['details'],
+      youtubeId: links['youtube_id'],
+    );
   }
 }
