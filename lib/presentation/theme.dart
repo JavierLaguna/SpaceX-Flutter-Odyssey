@@ -5,6 +5,11 @@ class SpaceXColors {
   static final black = Color(0xFF000000);
   static final white = Color(0xFFFFFFFF); // Icons
 
+  static final red = Color(0xFFdc3545);
+  static final green = const Color(0xFF28a745);
+  static final blue = const Color(0xFF17a2b8);
+  static final yellow = const Color(0xFFffc107);
+
   static final lightOrange = Color(0xFFFFCCBC);
   static final orange = Color(0xFFFF5722); // Primary
   static final darkOrange = Color(0xFFE64A19);
@@ -18,6 +23,16 @@ class SpaceXColors {
   static final darkBlueGray = Color(0xFF263238);
 }
 
+extension CustomColorScheme on ColorScheme {
+  Color get success => SpaceXColors.green;
+
+  Color get info => SpaceXColors.blue;
+
+  Color get warning => SpaceXColors.yellow;
+
+  Color get danger => SpaceXColors.red;
+}
+
 final _lightTextTheme = GoogleFonts.ralewayTextTheme().apply(
   bodyColor: SpaceXColors.darkGray,
   displayColor: SpaceXColors.darkGray,
@@ -29,6 +44,7 @@ final _darkTextTheme = GoogleFonts.ralewayTextTheme().apply(
 );
 
 final spaceXLightTheme = ThemeData(
+  brightness: Brightness.light,
   accentColor: SpaceXColors.blueGray,
   toggleableActiveColor: SpaceXColors.orange,
   textTheme: _lightTextTheme,
@@ -49,6 +65,7 @@ final spaceXLightTheme = ThemeData(
 );
 
 final spaceXDarkTheme = ThemeData(
+  brightness: Brightness.dark,
   accentColor: SpaceXColors.darkOrange,
   toggleableActiveColor: SpaceXColors.darkOrange,
   textTheme: _darkTextTheme,

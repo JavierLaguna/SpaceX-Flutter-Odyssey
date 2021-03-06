@@ -30,8 +30,8 @@ class SetThemeInteractorImpl extends SetThemeInteractor {
           : spaceXLightTheme.appBarTheme.color,
       statusBarBrightness:
           theme == SpaceXTheme.dark // Dark == white status bar -- for IOS.
-              ? Brightness.light
-              : Brightness.dark,
+              ? Brightness.dark
+              : Brightness.light,
     ));
   }
 

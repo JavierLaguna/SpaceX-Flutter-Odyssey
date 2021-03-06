@@ -1,4 +1,5 @@
 import 'package:SpaceXFlutterOdyssey/presentation/scenes/launchDetail/launch_detail_viewmodel.dart';
+import 'package:SpaceXFlutterOdyssey/presentation/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
@@ -15,7 +16,45 @@ class LaunchDetailScene extends GetWidget<LaunchDetailViewModel> {
           title: Text(_viewModel.launch.value.name),
         ),
         body: SafeArea(
-          child: Text(_viewModel.launch.value.flightNumber.toString()),
+          child: Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  _viewModel.launch.value.name,
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline4
+                      .copyWith(fontWeight: FontWeight.bold),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      '${tr('launchDetail.flightNumber')}${_viewModel.launch.value.flightNumber.toString()}',
+                      style: Theme.of(context)
+                          .textTheme
+                          .subtitle1
+                          .copyWith(fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      _viewModel.launch.value.success
+                          ? 'launchDetail.success'
+                          : 'launchDetail.failure',
+                      style: Theme.of(context).textTheme.headline6.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: _viewModel.launch.value.success
+                                ? Theme.of(context).colorScheme.success
+                                : Theme.of(context).colorScheme.error,
+                          ),
+                    ).tr(),
+                  ],
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
