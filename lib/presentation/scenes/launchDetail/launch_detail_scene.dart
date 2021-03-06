@@ -60,6 +60,12 @@ class LaunchDetailScene extends GetWidget<LaunchDetailViewModel> {
                     ),
                     _Separator(),
                     Text(
+                      DateFormat('E, d MMM, yyyy  -  h:mm a')
+                          .format(launch.launchDateLocal),
+                      style: Theme.of(context).textTheme.subtitle2,
+                    ),
+                    _Separator(),
+                    Text(
                       'launchDetail.detailOfFlight',
                       style: Theme.of(context)
                           .textTheme
