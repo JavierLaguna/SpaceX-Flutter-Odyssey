@@ -14,6 +14,7 @@ class Launch {
   final bool success;
   final String patchImageSmall;
   final String patchImageLarge;
+  final String details;
 
   Launch({
     @required this.flightNumber,
@@ -26,6 +27,7 @@ class Launch {
     @required this.success,
     @required this.patchImageSmall,
     @required this.patchImageLarge,
+    @required this.details,
   });
 
   factory Launch.fromMap(Map<String, dynamic> map) {
@@ -42,6 +44,7 @@ class Launch {
         launchDateLocal: DateTime.parse(map['date_local']),
         success: map['success'],
         patchImageSmall: patches['small'],
-        patchImageLarge: patches['large']);
+        patchImageLarge: patches['large'],
+        details: map['details']);
   }
 }

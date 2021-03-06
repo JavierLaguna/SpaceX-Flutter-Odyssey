@@ -29,15 +29,13 @@ class LaunchDetailScene extends GetWidget<LaunchDetailViewModel> {
                       .headline4
                       .copyWith(fontWeight: FontWeight.bold),
                 ),
+                _TextSeparator(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       '${tr('launchDetail.flightNumber')}${_viewModel.launch.value.flightNumber.toString()}',
-                      style: Theme.of(context)
-                          .textTheme
-                          .subtitle1
-                          .copyWith(fontWeight: FontWeight.bold),
+                      style: Theme.of(context).textTheme.subtitle1,
                     ),
                     Text(
                       _viewModel.launch.value.success
@@ -52,11 +50,30 @@ class LaunchDetailScene extends GetWidget<LaunchDetailViewModel> {
                     ).tr(),
                   ],
                 ),
+                _TextSeparator(),
+                Text(
+                  'launchDetail.detailOfFlight',
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline5
+                      .copyWith(fontWeight: FontWeight.bold),
+                ).tr(),
+                _TextSeparator(),
+                Text(_viewModel.launch.value.details),
               ],
             ),
           ),
         ),
       ),
+    );
+  }
+}
+
+class _TextSeparator extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 12,
     );
   }
 }

@@ -71,6 +71,9 @@ final spaceXDarkTheme = ThemeData(
   textTheme: _darkTextTheme,
   appBarTheme: AppBarTheme(
     color: SpaceXColors.darkOrange,
+    iconTheme: IconThemeData(
+      color: SpaceXColors.darkGray,
+    ),
     textTheme: _darkTextTheme.copyWith(
       headline6: TextStyle(
         fontSize: 19,
