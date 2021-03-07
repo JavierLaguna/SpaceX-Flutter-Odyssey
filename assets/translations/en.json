@@ -12,5 +12,11 @@
   "settings": {
     "title": "Settings",
     "darkModeLabel": "Dark mode"
+  },
+  "launchDetail": {
+    "flightNumber": "Flight Number #",
+    "success": "Success",
+    "failure": "Failure",
+    "detailOfFlight": "Detail of the flight"
   }
 }
