@@ -7,9 +7,11 @@ class LaunchService {
   final String baseUrl = 'https://api.spacexdata.com/v4';
 
   Future<List<Launch>> getAllLaunches() async {
-    final url = '$baseUrl/launches';
+    final url = Uri.parse('$baseUrl/launches');
+
     final response = await http.get(url);
-    final responseModel = GetLaunchesServiceResponse.makeFromResponse(response.body);
+    final responseModel =
+        GetLaunchesServiceResponse.makeFromResponse(response.body);
 
     return responseModel.launches;
   }
