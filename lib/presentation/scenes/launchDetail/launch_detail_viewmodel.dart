@@ -17,6 +17,8 @@ class LaunchDetailViewModel extends GetxController {
           launchDateLocal: null,
           success: null,
           patchImageSmall: null,
-          patchImageLarge: null)
+          patchImageLarge: null,
+          youtubeId: null,
+          details: null)
       .obs;
 }
