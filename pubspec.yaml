@@ -23,21 +23,25 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  http: ^0.12.2
-  get: ^3.25.6
-  google_fonts: ^1.1.2
-  easy_localization: ^2.3.3
-  shared_preferences: ^0.5.12+4
-  youtube_player_flutter: ^7.0.0+7
+  http: ^0.13.1
+  get: ^4.0.3
+  google_fonts: ^2.0.0
+  easy_localization: ^3.0.0
+  shared_preferences: ^2.0.5
+  youtube_player_flutter:
+    git:
+      url: https://github.com/RR-Reddy/youtube_player_flutter.git
+      ref: migrate-null-safety
+      path: packages/youtube_player_flutter
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.0
+  cupertino_icons: ^1.0.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  pedantic: ^1.9.2
+  pedantic: ^1.11.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
