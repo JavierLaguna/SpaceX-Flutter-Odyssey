@@ -5,12 +5,15 @@ import 'package:SpaceXFlutterOdyssey/presentation/scenes/launchDetail/launch_det
 import 'package:get/get.dart';
 
 class LaunchesViewModel extends GetxController {
+
+  // -- Properties
   final GetLaunchesInteractor _getLaunchesInteractor;
-
-  LaunchesViewModel(this._getLaunchesInteractor);
-
   RxList<Launch> launches = <Launch>[].obs;
 
+  // -- Constructor
+  LaunchesViewModel(this._getLaunchesInteractor);
+
+  // -- Lifecycle
   @override
   void onReady() {
     super.onReady();
@@ -18,10 +21,17 @@ class LaunchesViewModel extends GetxController {
     _getLaunches();
   }
 
+  // -- Public methods
   onSelectLaunch(Launch launch) {
     _goToLaunchDetail(launch);
   }
 
+  Future<void> refreshLaunches() async {
+    await _getLaunches();
+    return;
+  }
+
+  // -- Private methods
   _getLaunches() async {
     final launches = await _getLaunchesInteractor.get();
     this.launches.assignAll(launches);

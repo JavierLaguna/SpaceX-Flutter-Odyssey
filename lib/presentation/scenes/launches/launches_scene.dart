@@ -19,6 +19,7 @@ class LaunchesScene extends GetWidget<LaunchesViewModel> {
           () => ListLaunchesWidget(
             launches: _viewModel.launches.value,
             onTapLaunch: _viewModel.onSelectLaunch,
+            onRefresh: _viewModel.refreshLaunches,
           ),
         ),
       ),
