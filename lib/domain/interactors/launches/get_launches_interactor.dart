@@ -8,8 +8,7 @@ abstract class GetLaunchesInteractor {
 class GetLaunchesInteractorImpl extends GetLaunchesInteractor {
   final LaunchRepositoryRemote _launchRepositoryRemote;
 
-  GetLaunchesInteractorImpl(this._launchRepositoryRemote)
-      : assert(_launchRepositoryRemote != null);
+  GetLaunchesInteractorImpl(this._launchRepositoryRemote);
 
   @override
   Future<List<Launch>> get() async {

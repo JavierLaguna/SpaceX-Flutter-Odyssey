@@ -1,15 +1,16 @@
 import 'package:SpaceXFlutterOdyssey/domain/entities/launch.dart';
+import 'package:SpaceXFlutterOdyssey/presentation/widgets/loading_full_screen_widget.dart';
 import 'package:flutter/material.dart';
 
 class ListLaunchesWidget extends StatelessWidget {
   final List<Launch> _launches;
   final Function(Launch) _onTapLaunch;
-  final Future<void> Function() _onRefresh;
+  final Future<void> Function()? _onRefresh;
 
   const ListLaunchesWidget({
-    List<Launch> launches,
-    Function(Launch) onTapLaunch,
-    Future<void> Function() onRefresh,
+    required List<Launch> launches,
+    required Function(Launch) onTapLaunch,
+    Future<void> Function()? onRefresh,
   })  : _launches = launches,
         _onTapLaunch = onTapLaunch,
         _onRefresh = onRefresh;
@@ -18,23 +19,20 @@ class ListLaunchesWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: _launches == null || _launches.isEmpty
+      child: _launches.isEmpty
           ? _EmptyListWidget()
-          : RefreshIndicator(
-              onRefresh: _onRefresh,
-              child: _LaunchesGrid(
-                launches: _launches,
-                onTapLaunch: _onTapLaunch,
-              )),
-    );
-  }
-}
-
-class _EmptyListWidget extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: const CircularProgressIndicator(),
+          : _onRefresh != null
+              ? RefreshIndicator(
+                  onRefresh: _onRefresh!,
+                  child: _LaunchesGrid(
+                    launches: _launches,
+                    onTapLaunch: _onTapLaunch,
+                  ),
+                )
+              : _LaunchesGrid(
+                  launches: _launches,
+                  onTapLaunch: _onTapLaunch,
+                ),
     );
   }
 }
@@ -44,13 +42,15 @@ class _LaunchesGrid extends StatelessWidget {
   final Function(Launch) _onTapLaunch;
 
   const _LaunchesGrid({
-    List<Launch> launches,
-    Function(Launch) onTapLaunch,
-  })  : _launches = launches,
+    required List<Launch> launches,
+    required Function(Launch) onTapLaunch,
+  })   : _launches = launches,
         _onTapLaunch = onTapLaunch;
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return GridView.builder(
       gridDelegate:
           SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
@@ -61,7 +61,7 @@ class _LaunchesGrid extends StatelessWidget {
         return InkWell(
           onTap: () => _onTapLaunch(launch),
           child: Card(
-            key: Key(launch.id),
+            key: Key(launch.flightNumber.toString()),
             clipBehavior: Clip.antiAlias,
             shape: BeveledRectangleBorder(
               borderRadius: BorderRadius.circular(10),
@@ -73,18 +73,15 @@ class _LaunchesGrid extends StatelessWidget {
               child: Column(
                 children: [
                   Expanded(
-                    child: Image(
-                      image: NetworkImage(launch.patchImageSmall),
-                      fit: BoxFit.fill,
+                    child: _LaunchImage(
+                      remoteImage: launch.patchImageSmall,
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 8.0),
                     child: Text(
                       launch.name,
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline6
+                      style: theme.textTheme.headline6!
                           .copyWith(fontWeight: FontWeight.bold),
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -96,5 +93,28 @@ class _LaunchesGrid extends StatelessWidget {
         );
       },
     );
+  }
+}
+
+class _LaunchImage extends StatelessWidget {
+  final String? _remoteImage;
+
+  const _LaunchImage({String? remoteImage}) : this._remoteImage = remoteImage;
+
+  @override
+  Widget build(BuildContext context) {
+    return _remoteImage == null
+        ? Image.asset('assets/images/launch-placeholder.png')
+        : Image(
+            image: NetworkImage(_remoteImage!),
+            fit: BoxFit.fill,
+          );
+  }
+}
+
+class _EmptyListWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return LoadingFullScrWidget();
   }
 }

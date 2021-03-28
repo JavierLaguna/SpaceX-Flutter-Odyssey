@@ -3,15 +3,16 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class YoutubePlayerWidget extends StatelessWidget {
   final String videoId;
-  final bool autoplay;
-  YoutubePlayerController _controller;
+  final bool autoPlay;
+  late YoutubePlayerController _controller;
 
-  YoutubePlayerWidget({Key key, this.videoId, this.autoplay = false})
-      : super(key: key) {
+  YoutubePlayerWidget({required this.videoId, this.autoPlay = false})
+      : super() {
+
     this._controller = YoutubePlayerController(
       initialVideoId: this.videoId,
       flags: YoutubePlayerFlags(
-        autoPlay: this.autoplay,
+        autoPlay: this.autoPlay,
       ),
     );
   }

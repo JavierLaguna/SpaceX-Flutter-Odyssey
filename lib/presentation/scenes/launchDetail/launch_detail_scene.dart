@@ -1,5 +1,7 @@
 import 'package:SpaceXFlutterOdyssey/presentation/scenes/launchDetail/launch_detail_viewmodel.dart';
 import 'package:SpaceXFlutterOdyssey/presentation/theme.dart';
+import 'package:SpaceXFlutterOdyssey/presentation/widgets/empty_widget.dart';
+import 'package:SpaceXFlutterOdyssey/presentation/widgets/loading_full_screen_widget.dart';
 import 'package:SpaceXFlutterOdyssey/presentation/widgets/youtube_player_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -11,8 +13,15 @@ class LaunchDetailScene extends GetWidget<LaunchDetailViewModel> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Obx(() {
-      var launch = _viewModel.launch.value;
+      if (_viewModel.launch.value == null) {
+        return LoadingFullScrWidget();
+      }
+
+      final launch = _viewModel.launch.value!;
+      final success = launch.success ?? false;
 
       return Scaffold(
         appBar: AppBar(
@@ -21,9 +30,11 @@ class LaunchDetailScene extends GetWidget<LaunchDetailViewModel> {
         body: SafeArea(
           child: Column(
             children: [
-              YoutubePlayerWidget(
-                videoId: launch.youtubeId,
-              ),
+              launch.youtubeId != null
+                  ? YoutubePlayerWidget(
+                      videoId: launch.youtubeId!,
+                    )
+                  : EmptyWidget(),
               Padding(
                 padding: const EdgeInsets.symmetric(
                     horizontal: 24.0, vertical: 16.0),
@@ -32,9 +43,7 @@ class LaunchDetailScene extends GetWidget<LaunchDetailViewModel> {
                   children: [
                     Text(
                       launch.name,
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline4
+                      style: theme.textTheme.headline4!
                           .copyWith(fontWeight: FontWeight.bold),
                     ),
                     _Separator(),
@@ -43,18 +52,18 @@ class LaunchDetailScene extends GetWidget<LaunchDetailViewModel> {
                       children: [
                         Text(
                           '${tr('launchDetail.flightNumber')}${launch.flightNumber.toString()}',
-                          style: Theme.of(context).textTheme.subtitle1,
+                          style: theme.textTheme.subtitle1,
                         ),
                         Text(
-                          launch.success
+                          success
                               ? 'launchDetail.success'
                               : 'launchDetail.failure',
-                          style: Theme.of(context).textTheme.headline6.copyWith(
-                                fontWeight: FontWeight.bold,
-                                color: launch.success
-                                    ? Theme.of(context).colorScheme.success
-                                    : Theme.of(context).colorScheme.error,
-                              ),
+                          style: theme.textTheme.headline6!.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: success
+                                ? theme.colorScheme.success
+                                : theme.colorScheme.error,
+                          ),
                         ).tr(),
                       ],
                     ),
@@ -62,18 +71,12 @@ class LaunchDetailScene extends GetWidget<LaunchDetailViewModel> {
                     Text(
                       DateFormat('E, d MMM, yyyy  -  h:mm a')
                           .format(launch.launchDateLocal),
-                      style: Theme.of(context).textTheme.subtitle2,
+                      style: theme.textTheme.subtitle2,
                     ),
                     _Separator(),
-                    Text(
-                      'launchDetail.detailOfFlight',
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline5
-                          .copyWith(fontWeight: FontWeight.bold),
-                    ).tr(),
-                    _Separator(),
-                    Text(launch.details),
+                    _DetailSection(
+                      details: launch.details,
+                    )
                   ],
                 ),
               ),
@@ -82,6 +85,29 @@ class LaunchDetailScene extends GetWidget<LaunchDetailViewModel> {
         ),
       );
     });
+  }
+}
+
+class _DetailSection extends StatelessWidget {
+  final String? _details;
+
+  const _DetailSection({String? details}) : this._details = details;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return _details == null
+        ? EmptyWidget()
+        : Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(
+              'launchDetail.detailOfFlight',
+              style: theme.textTheme.headline5!
+                  .copyWith(fontWeight: FontWeight.bold),
+            ).tr(),
+            _Separator(),
+            Text(_details!),
+          ]);
   }
 }
 

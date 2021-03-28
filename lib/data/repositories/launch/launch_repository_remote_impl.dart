@@ -5,8 +5,7 @@ import 'package:SpaceXFlutterOdyssey/domain/repositories/launch/launch_remote_re
 class LaunchRepositoryRemoteImpl extends LaunchRepositoryRemote {
   final LaunchService _launchService;
 
-  LaunchRepositoryRemoteImpl(this._launchService)
-      : assert(_launchService != null);
+  LaunchRepositoryRemoteImpl(this._launchService);
 
   @override
   Future<List<Launch>> getAllLaunches() async {

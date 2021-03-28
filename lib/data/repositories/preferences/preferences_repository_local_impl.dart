@@ -10,10 +10,13 @@ class PreferencesRepositoryLocalImpl extends PreferencesRepositoryLocal {
   Future<SpaceXTheme> getTheme() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     final themeString = prefs.getString(pref_key_theme);
+
     if (themeString == null) {
       return SpaceXTheme.unknown;
     }
-    return enumFromString<SpaceXTheme>(themeString, SpaceXTheme.values);
+
+    final theme = enumFromString<SpaceXTheme>(themeString, SpaceXTheme.values);
+    return theme ?? SpaceXTheme.unknown;
   }
 
   @override
