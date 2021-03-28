@@ -1,4 +1,5 @@
 import 'package:SpaceXFlutterOdyssey/domain/entities/launch.dart';
+import 'package:SpaceXFlutterOdyssey/presentation/widgets/loading_full_screen_widget.dart';
 import 'package:flutter/material.dart';
 
 class ListLaunchesWidget extends StatelessWidget {
@@ -17,28 +18,21 @@ class ListLaunchesWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: _launches.isEmpty
-            ? _EmptyListWidget()
-            : _onRefresh != null
-                ? RefreshIndicator(
-                    onRefresh: _onRefresh!,
-                    child: _LaunchesGrid(
-                      launches: _launches,
-                      onTapLaunch: _onTapLaunch,
-                    ))
-                : _LaunchesGrid(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: _launches.isEmpty
+          ? _EmptyListWidget()
+          : _onRefresh != null
+              ? RefreshIndicator(
+                  onRefresh: _onRefresh!,
+                  child: _LaunchesGrid(
                     launches: _launches,
                     onTapLaunch: _onTapLaunch,
-                  ));
-  }
-}
-
-class _EmptyListWidget extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: const CircularProgressIndicator(),
+                  ),
+                )
+              : _LaunchesGrid(
+                  launches: _launches,
+                  onTapLaunch: _onTapLaunch,
+                ),
     );
   }
 }
@@ -78,12 +72,11 @@ class _LaunchesGrid extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 children: [
-                  // Expanded(
-                  //   child: Image(
-                  //     image: NetworkImage(launch.patchImageSmall),
-                  //     fit: BoxFit.fill,
-                  //   ),
-                  // ),
+                  Expanded(
+                    child: _LaunchImage(
+                      remoteImage: launch.patchImageSmall,
+                    ),
+                  ),
                   Padding(
                     padding: const EdgeInsets.only(top: 8.0),
                     child: Text(
@@ -100,5 +93,28 @@ class _LaunchesGrid extends StatelessWidget {
         );
       },
     );
+  }
+}
+
+class _LaunchImage extends StatelessWidget {
+  final String? _remoteImage;
+
+  const _LaunchImage({String? remoteImage}) : this._remoteImage = remoteImage;
+
+  @override
+  Widget build(BuildContext context) {
+    return _remoteImage == null
+        ? Image.asset('assets/images/launch-placeholder.png')
+        : Image(
+            image: NetworkImage(_remoteImage!),
+            fit: BoxFit.fill,
+          );
+  }
+}
+
+class _EmptyListWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return LoadingFullScrWidget();
   }
 }

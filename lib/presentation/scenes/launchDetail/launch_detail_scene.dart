@@ -1,6 +1,7 @@
 import 'package:SpaceXFlutterOdyssey/presentation/scenes/launchDetail/launch_detail_viewmodel.dart';
 import 'package:SpaceXFlutterOdyssey/presentation/theme.dart';
 import 'package:SpaceXFlutterOdyssey/presentation/widgets/empty_widget.dart';
+import 'package:SpaceXFlutterOdyssey/presentation/widgets/loading_full_screen_widget.dart';
 import 'package:SpaceXFlutterOdyssey/presentation/widgets/youtube_player_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -16,7 +17,7 @@ class LaunchDetailScene extends GetWidget<LaunchDetailViewModel> {
 
     return Obx(() {
       if (_viewModel.launch.value == null) {
-        return _LoadingWidget();
+        return LoadingFullScrWidget();
       }
 
       final launch = _viewModel.launch.value!;
@@ -73,15 +74,9 @@ class LaunchDetailScene extends GetWidget<LaunchDetailViewModel> {
                       style: theme.textTheme.subtitle2,
                     ),
                     _Separator(),
-                    Text(
-                      'launchDetail.detailOfFlight',
-                      style: theme.textTheme.headline5!
-                          .copyWith(fontWeight: FontWeight.bold),
-                    ).tr(),
-                    _Separator(),
-                    launch.details != null
-                        ? Text(launch.details!)
-                        : EmptyWidget(),
+                    _DetailSection(
+                      details: launch.details,
+                    )
                   ],
                 ),
               ),
@@ -93,20 +88,34 @@ class LaunchDetailScene extends GetWidget<LaunchDetailViewModel> {
   }
 }
 
+class _DetailSection extends StatelessWidget {
+  final String? _details;
+
+  const _DetailSection({String? details}) : this._details = details;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return _details == null
+        ? EmptyWidget()
+        : Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(
+              'launchDetail.detailOfFlight',
+              style: theme.textTheme.headline5!
+                  .copyWith(fontWeight: FontWeight.bold),
+            ).tr(),
+            _Separator(),
+            Text(_details!),
+          ]);
+  }
+}
+
 class _Separator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 12,
-    );
-  }
-}
-
-class _LoadingWidget extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: const CircularProgressIndicator(),
     );
   }
 }
