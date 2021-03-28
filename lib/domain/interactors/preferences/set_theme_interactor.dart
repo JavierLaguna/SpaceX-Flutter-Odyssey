@@ -11,8 +11,7 @@ abstract class SetThemeInteractor {
 class SetThemeInteractorImpl extends SetThemeInteractor {
   final PreferencesRepositoryLocal _repositoryLocal;
 
-  SetThemeInteractorImpl(this._repositoryLocal)
-      : assert(_repositoryLocal != null);
+  SetThemeInteractorImpl(this._repositoryLocal);
 
   @override
   Future<void> setDarkMode(bool useDarkMode) async {

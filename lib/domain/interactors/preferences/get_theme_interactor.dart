@@ -10,8 +10,7 @@ class GetThemeInteractorImpl extends GetThemeInteractor {
   final DeviceRepository _deviceRepository;
   final PreferencesRepositoryLocal _repositoryLocal;
 
-  GetThemeInteractorImpl(this._deviceRepository, this._repositoryLocal)
-      : assert(_deviceRepository != null, _repositoryLocal != null);
+  GetThemeInteractorImpl(this._deviceRepository, this._repositoryLocal);
 
   @override
   Future<bool> usesDarkMode() async {
