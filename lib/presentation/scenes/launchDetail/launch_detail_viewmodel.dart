@@ -1,15 +1,21 @@
-import 'package:SpaceXFlutterOdyssey/data/datasources/spacex_service/launchpad_service.dart';
-import 'package:SpaceXFlutterOdyssey/data/repositories/launchpad/launchpads_remote_repository_impl.dart';
 import 'package:SpaceXFlutterOdyssey/domain/entities/launch.dart';
+import 'package:SpaceXFlutterOdyssey/domain/entities/launchpad.dart';
+import 'package:SpaceXFlutterOdyssey/domain/interactors/launchpads/get_launchpad_interactor.dart';
 import 'package:get/get.dart';
 
 class LaunchDetailViewModel extends GetxController {
   // -- Properties
   final Launch _launch;
+  final GetLaunchpadInteractor _getLaunchpadInteractor;
   Rxn<Launch> launch = Rxn<Launch>();
+  Rxn<Launchpad> launchpad = Rxn<Launchpad>();
 
   // -- Constructor
-  LaunchDetailViewModel({required Launch launch}) : this._launch = launch {
+  LaunchDetailViewModel(
+      {required Launch launch,
+      required GetLaunchpadInteractor getLaunchpadInteractor})
+      : this._launch = launch,
+        this._getLaunchpadInteractor = getLaunchpadInteractor {
     this.launch.value = launch;
   }
 
@@ -18,13 +24,16 @@ class LaunchDetailViewModel extends GetxController {
   void onReady() {
     super.onReady();
 
-    _getLandPad();
+    _getLaunchpad();
   }
 
   // -- Private methods
-  _getLandPad() async {
-    final repo = LaunchpadsRepositoryRemoteImpl(LaunchpadService());
-    final landPads = await repo.getLaunchpad(_launch.launchpadId!);
-    print(landPads);
+  _getLaunchpad() async {
+    if (_launch.launchpadId != null) {
+      final launchpad = await _getLaunchpadInteractor.get(_launch.launchpadId!);
+      this.launchpad.value = launchpad;
+    } else {
+      // TODO: ???
+    }
   }
 }
