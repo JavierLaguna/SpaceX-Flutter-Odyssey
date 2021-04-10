@@ -14,6 +14,7 @@ class Launch {
   final String? patchImageLarge;
   final String? details;
   final String? youtubeId;
+  final String? launchpadId;
 
   Launch({
     required this.flightNumber,
@@ -27,6 +28,7 @@ class Launch {
     this.patchImageLarge,
     this.details,
     this.youtubeId,
+    this.launchpadId,
   });
 
   factory Launch.fromMap(Map<String, dynamic> map) {
@@ -45,6 +47,7 @@ class Launch {
       patchImageLarge: patches['large'],
       details: map['details'],
       youtubeId: links['youtube_id'],
+      launchpadId: map['launchpad'],
     );
   }
 }
