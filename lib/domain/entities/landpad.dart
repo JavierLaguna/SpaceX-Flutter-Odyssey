@@ -6,8 +6,7 @@ class LandPad {
   final LandPadStatus status;
   final int landingAttempts;
   final int landingSuccesses;
-
-  // final List<String> launchesIds;
+  final List<String> launchesIds;
   final String? name;
   final String? fullName;
   final String? type;
@@ -22,7 +21,7 @@ class LandPad {
     required this.status,
     required this.landingAttempts,
     required this.landingSuccesses,
-    // required this.launchesIds,
+    required this.launchesIds,
     this.name,
     this.fullName,
     this.type,
@@ -34,6 +33,8 @@ class LandPad {
   });
 
   factory LandPad.fromMap(Map<String, dynamic> map) {
+    final launchesIds = new List<String>.from(map['launches']);
+
     final status = EnumToString.fromString(LandPadStatus.values, map['status'],
         camelCase: true);
 
@@ -41,7 +42,7 @@ class LandPad {
       id: map['id'],
       landingAttempts: map['landing_attempts'],
       landingSuccesses: map['landing_successes'],
-      // launchesIds: map['launches'],
+      launchesIds: launchesIds,
       status: status ?? LandPadStatus.unknown,
       details: map['details'],
       fullName: map['full_name'],
