@@ -13,6 +13,6 @@ class LandPadService {
     final responseModel =
         GetLandPadsServiceResponse.makeFromResponse(response.body);
 
-    return responseModel.landpads;
+    return responseModel.landPads;
   }
 }

@@ -1,16 +1,19 @@
 import 'dart:convert';
 import 'package:SpaceXFlutterOdyssey/domain/entities/landpad.dart';
+import 'landpad_service_response.dart';
 
 GetLandPadsServiceResponse makeFromResponse(String str) =>
     GetLandPadsServiceResponse.fromJson(json.decode(str));
 
 class GetLandPadsServiceResponse {
-  final List<LandPad> landpads;
+  final List<LandPad> landPads;
 
-  GetLandPadsServiceResponse({required this.landpads});
+  GetLandPadsServiceResponse({required this.landPads});
 
   factory GetLandPadsServiceResponse.fromJson(List<dynamic> parsedJson) {
     return GetLandPadsServiceResponse(
-        landpads: parsedJson.map((json) => LandPad.fromMap(json)).toList());
+        landPads: parsedJson
+            .map((json) => LandPadServiceResponse.fromMap(json))
+            .toList());
   }
 }

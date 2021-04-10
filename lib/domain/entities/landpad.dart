@@ -1,5 +1,4 @@
 import 'package:SpaceXFlutterOdyssey/domain/entities/landpad_status.dart';
-import 'package:enum_to_string/enum_to_string.dart';
 
 class LandPad {
   final String id;
@@ -31,27 +30,4 @@ class LandPad {
     this.longitude,
     this.details,
   });
-
-  factory LandPad.fromMap(Map<String, dynamic> map) {
-    final launchesIds = new List<String>.from(map['launches']);
-
-    final status = EnumToString.fromString(LandPadStatus.values, map['status'],
-        camelCase: true);
-
-    return LandPad(
-      id: map['id'],
-      landingAttempts: map['landing_attempts'],
-      landingSuccesses: map['landing_successes'],
-      launchesIds: launchesIds,
-      status: status ?? LandPadStatus.unknown,
-      details: map['details'],
-      fullName: map['full_name'],
-      latitude: map['latitude'],
-      locality: map['locality'],
-      longitude: map['longitude'],
-      name: map['name'],
-      region: map['region'],
-      type: map['type'],
-    );
-  }
 }
