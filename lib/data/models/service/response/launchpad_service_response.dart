@@ -10,8 +10,8 @@ class LaunchpadServiceResponse extends Launchpad {
   LaunchpadServiceResponse({
     required String id,
     required LaunchpadStatus status,
-    required int landingAttempts,
-    required int landingSuccesses,
+    required int launchAttempts,
+    required int launchSuccesses,
     required List<String> launchesIds,
     required List<String> rocketsIds,
     String? name,
@@ -26,8 +26,8 @@ class LaunchpadServiceResponse extends Launchpad {
             status: status,
             launchesIds: launchesIds,
             rocketsIds: rocketsIds,
-            landingSuccesses: landingSuccesses,
-            landingAttempts: landingSuccesses,
+            launchSuccesses: launchSuccesses,
+            launchAttempts: launchSuccesses,
             name: name,
             id: id,
             region: region,
@@ -47,8 +47,8 @@ class LaunchpadServiceResponse extends Launchpad {
 
     return LaunchpadServiceResponse(
       id: map['id'],
-      landingAttempts: map['landing_attempts'],
-      landingSuccesses: map['landing_successes'],
+      launchAttempts: map['launch_attempts'],
+      launchSuccesses: map['launch_successes'],
       launchesIds: launchesIds,
       rocketsIds: rocketsIds,
       status: status ?? LaunchpadStatus.unknown,

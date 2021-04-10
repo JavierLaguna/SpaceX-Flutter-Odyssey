@@ -1,5 +1,5 @@
-import 'package:SpaceXFlutterOdyssey/data/datasources/spacex_service/landpad_service.dart';
-import 'package:SpaceXFlutterOdyssey/data/repositories/landpads/landpads_remote_repository_impl.dart';
+import 'package:SpaceXFlutterOdyssey/data/datasources/spacex_service/launchpad_service.dart';
+import 'package:SpaceXFlutterOdyssey/data/repositories/launchpad/launchpads_remote_repository_impl.dart';
 import 'package:SpaceXFlutterOdyssey/domain/entities/launch.dart';
 import 'package:get/get.dart';
 
@@ -23,8 +23,8 @@ class LaunchDetailViewModel extends GetxController {
 
   // -- Private methods
   _getLandPad() async {
-    final repo = LandPadsRepositoryRemoteImpl(LandPadService());
-    final landPads = await repo.getLandPad(_launch.launchpadId!);
+    final repo = LaunchpadsRepositoryRemoteImpl(LaunchpadService());
+    final landPads = await repo.getLaunchpad(_launch.launchpadId!);
     print(landPads);
   }
 }

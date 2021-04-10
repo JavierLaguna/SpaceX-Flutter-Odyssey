@@ -3,8 +3,8 @@ import 'package:SpaceXFlutterOdyssey/domain/entities/launchpad_status.dart';
 class Launchpad {
   final String id;
   final LaunchpadStatus status;
-  final int landingAttempts;
-  final int landingSuccesses;
+  final int launchAttempts;
+  final int launchSuccesses;
   final List<String> launchesIds;
   final List<String> rocketsIds;
   final String? name;
@@ -18,8 +18,8 @@ class Launchpad {
   Launchpad({
     required this.id,
     required this.status,
-    required this.landingAttempts,
-    required this.landingSuccesses,
+    required this.launchAttempts,
+    required this.launchSuccesses,
     required this.launchesIds,
     required this.rocketsIds,
     this.name,
