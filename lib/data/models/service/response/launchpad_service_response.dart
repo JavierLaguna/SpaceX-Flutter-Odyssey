@@ -1,18 +1,19 @@
 import 'dart:convert';
-import 'package:SpaceXFlutterOdyssey/domain/entities/landpad.dart';
-import 'package:SpaceXFlutterOdyssey/domain/entities/landpad_status.dart';
+import 'package:SpaceXFlutterOdyssey/domain/entities/launchpad.dart';
+import 'package:SpaceXFlutterOdyssey/domain/entities/launchpad_status.dart';
 import 'package:enum_to_string/enum_to_string.dart';
 
-LandPadServiceResponse makeFromResponse(String str) =>
-    LandPadServiceResponse.fromMap(json.decode(str));
+LaunchpadServiceResponse makeFromResponse(String str) =>
+    LaunchpadServiceResponse.fromMap(json.decode(str));
 
-class LandPadServiceResponse extends LandPad {
-  LandPadServiceResponse({
+class LaunchpadServiceResponse extends Launchpad {
+  LaunchpadServiceResponse({
     required String id,
-    required LandPadStatus status,
+    required LaunchpadStatus status,
     required int landingAttempts,
     required int landingSuccesses,
     required List<String> launchesIds,
+    required List<String> rocketsIds,
     String? name,
     String? fullName,
     String? type,
@@ -20,35 +21,37 @@ class LandPadServiceResponse extends LandPad {
     String? region,
     double? latitude,
     double? longitude,
-    String? details,
+    String? timezone,
   }) : super(
             status: status,
             launchesIds: launchesIds,
+            rocketsIds: rocketsIds,
             landingSuccesses: landingSuccesses,
             landingAttempts: landingSuccesses,
             name: name,
             id: id,
-            type: type,
             region: region,
             longitude: longitude,
             latitude: latitude,
             locality: locality,
             fullName: fullName,
-            details: details);
+            timezone: timezone);
 
-  factory LandPadServiceResponse.fromMap(Map<String, dynamic> map) {
+  factory LaunchpadServiceResponse.fromMap(Map<String, dynamic> map) {
     final launchesIds = new List<String>.from(map['launches']);
+    final rocketsIds = new List<String>.from(map['rockets']);
 
-    final status = EnumToString.fromString(LandPadStatus.values, map['status'],
+    final status = EnumToString.fromString(
+        LaunchpadStatus.values, map['status'],
         camelCase: true);
 
-    return LandPadServiceResponse(
+    return LaunchpadServiceResponse(
       id: map['id'],
       landingAttempts: map['landing_attempts'],
       landingSuccesses: map['landing_successes'],
       launchesIds: launchesIds,
-      status: status ?? LandPadStatus.unknown,
-      details: map['details'],
+      rocketsIds: rocketsIds,
+      status: status ?? LaunchpadStatus.unknown,
       fullName: map['full_name'],
       latitude: map['latitude'],
       locality: map['locality'],

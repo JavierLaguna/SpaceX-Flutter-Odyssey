@@ -11,4 +11,9 @@ class LandPadsRepositoryRemoteImpl extends LandPadsRepositoryRemote {
   Future<List<LandPad>> getAllLandPads() async {
     return await _landPadService.getAllLandPads();
   }
+
+  @override
+  Future<LandPad> getLandPad(String landPadId) async {
+    return await _landPadService.getLandPad(landPadId);
+  }
 }

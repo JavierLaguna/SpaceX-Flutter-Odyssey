@@ -4,8 +4,8 @@ import 'package:SpaceXFlutterOdyssey/data/repositories/device/device_repository_
 import 'package:SpaceXFlutterOdyssey/data/repositories/landpads/landpads_remote_repository_impl.dart';
 import 'package:SpaceXFlutterOdyssey/data/repositories/launch/launch_repository_remote_impl.dart';
 import 'package:SpaceXFlutterOdyssey/data/repositories/preferences/preferences_repository_local_impl.dart';
-import 'package:SpaceXFlutterOdyssey/domain/entities/landpad.dart';
 import 'package:SpaceXFlutterOdyssey/domain/interactors/app/init_app_interactor.dart';
+import 'package:SpaceXFlutterOdyssey/domain/interactors/landpads/get_landpad_interactor.dart';
 import 'package:SpaceXFlutterOdyssey/domain/interactors/landpads/get_landpads_interactor.dart';
 import 'package:SpaceXFlutterOdyssey/domain/interactors/launches/get_launches_interactor.dart';
 import 'package:SpaceXFlutterOdyssey/domain/interactors/preferences/get_theme_interactor.dart';
@@ -61,6 +61,10 @@ class MainInjector extends Bindings {
         ));
 
     Get.lazyPut<GetLandPadsInteractor>(() => GetLandPadsInteractorImpl(
+          Get.find<LandPadsRepositoryRemote>(),
+        ));
+
+    Get.lazyPut<GetLandPadInteractor>(() => GetLandPadInteractorImpl(
           Get.find<LandPadsRepositoryRemote>(),
         ));
 

@@ -5,10 +5,11 @@ import 'package:get/get.dart';
 
 class LaunchDetailViewModel extends GetxController {
   // -- Properties
+  final Launch _launch;
   Rxn<Launch> launch = Rxn<Launch>();
 
   // -- Constructor
-  LaunchDetailViewModel({required Launch launch}) {
+  LaunchDetailViewModel({required Launch launch}) : this._launch = launch {
     this.launch.value = launch;
   }
 
@@ -17,13 +18,13 @@ class LaunchDetailViewModel extends GetxController {
   void onReady() {
     super.onReady();
 
-    _getLandPads();
+    _getLandPad();
   }
 
   // -- Private methods
-  _getLandPads() async {
+  _getLandPad() async {
     final repo = LandPadsRepositoryRemoteImpl(LandPadService());
-    final landPads = await repo.getAllLandPads();
+    final landPads = await repo.getLandPad(_launch.launchpadId!);
     print(landPads);
   }
 }
