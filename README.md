@@ -1,16 +1,50 @@
-# SpaceXFlutterOdyssey
+# 📱 SpaceX Flutter Odyssey
+## 📝 Description
 
-A new Flutter project.
+Little iOS and Android client for consume [SpaceX](https://api.spacexdata.com/v4) API
 
-## Getting Started
+> Project used for learn Dart and Flutter
 
-This project is a starting point for a Flutter application.
+## 📷 Screenshots
 
-A few resources to get you started if this is your first Flutter project:
+TODO
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## 🚩 Instructions
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. Get dependencies with `flutter pub get`
+
+## 🚧 Application Architecture
+
+[Flutter](https://flutter.dev/) app based on ([Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) + [MVVM](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel)) as main architecture.
+
+[GetX](https://pub.dev/packages/get) for reactive ViewModels, dependency injection , manage themes and navigations.
+
+[http](https://pub.dev/packages/http) as networking layer.
+
+[easy_localization](https://pub.dev/packages/easy_localization) for intl.
+
+[GitFlow](https://datasift.github.io/gitflow/IntroducingGitFlow.html) as Git methodology.
+
+## ✅ App Features
+##### Launches
+
+- List all launches on a grid
+- Pull to refresh launches list
+
+##### Launch detail
+
+- Show launch details
+- Launch video on Youtube frame
+- Show Launchpad details and location on a Google Map
+
+##### Settings
+
+- Get app theme bases on device mode and modify from app settings
+
+## 🛠 Work in progress
+
+TODO
+
+## 💻 Author
+
+> Javier Laguna
