@@ -17,6 +17,7 @@
     "flightNumber": "Flight Number #",
     "success": "Success",
     "failure": "Failure",
-    "detailOfFlight": "Detail of the flight"
+    "detailOfFlight": "Detail of the flight",
+    "launchpadLocation": "Launchpad location"
   }
 }
