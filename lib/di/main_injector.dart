@@ -86,9 +86,9 @@ class MainInjector extends Bindings {
           Get.find<LaunchpadsRepositoryRemote>(),
         ));
 
-    Get.lazyPut<GetLaunchpadInteractor>(() => GetLaunchpadInteractorImpl(
-          Get.find<LaunchpadsRepositoryRemote>(),
-        ));
+    Get.put<GetLaunchpadInteractor>(GetLaunchpadInteractorImpl(
+      Get.find<LaunchpadsRepositoryRemote>(),
+    ));
 
     Get.put<GetThemeInteractor>(GetThemeInteractorImpl(
       Get.find<DeviceRepository>(),
