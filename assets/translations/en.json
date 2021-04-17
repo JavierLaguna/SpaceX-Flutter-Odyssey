@@ -19,5 +19,9 @@
     "failure": "Failure",
     "detailOfFlight": "Detail of the flight",
     "launchpadLocation": "Launchpad location"
+  },
+  "launchpadMap": {
+    "attempts": "Attempts",
+    "successes": "Successes"
   }
 }

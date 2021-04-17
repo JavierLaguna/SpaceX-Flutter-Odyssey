@@ -1,35 +1,118 @@
 import 'package:SpaceXFlutterOdyssey/domain/entities/launchpad.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class LaunchpadMap extends StatelessWidget {
-  late Launchpad _launchpad;
-  late Set<Marker> _markers;
-  late CameraPosition _cameraPosition;
+  static const _mapZoom = 12.000;
 
-  LaunchpadMap({required Launchpad launchpad}) : super() {
-    this._launchpad = launchpad;
-    this._markers = Set.from([
-      Marker(
-          markerId: MarkerId(launchpad.name!),
-          position: LatLng(launchpad.latitude!, launchpad.longitude!),
-          infoWindow:
-              InfoWindow(title: 'New York', snippet: 'Welcome to New York'))
-    ]);
-    this._cameraPosition = CameraPosition(
-      target: LatLng(launchpad.latitude!, launchpad.longitude!),
-      zoom: 12.000,
-    );
+  final Launchpad _launchpad;
+
+  Set<Marker>? _markers;
+  CameraPosition? _cameraPosition;
+
+  LaunchpadMap({required Launchpad launchpad}) : this._launchpad = launchpad {
+    if (launchpad.latitude != null && launchpad.longitude != null) {
+      this._markers = Set.from([
+        Marker(
+            markerId: MarkerId(launchpad.id),
+            position: LatLng(launchpad.latitude!, launchpad.longitude!),
+            infoWindow:
+                InfoWindow(title: launchpad.name, snippet: launchpad.fullName))
+      ]);
+
+      this._cameraPosition = CameraPosition(
+        target: LatLng(launchpad.latitude!, launchpad.longitude!),
+        zoom: _mapZoom,
+      );
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return _markers.isEmpty
+    return _cameraPosition == null || _markers == null || _markers!.isEmpty
         ? Text("EMPTY")
-        : GoogleMap(
-            markers: _markers,
-            mapType: MapType.normal,
-            initialCameraPosition: _cameraPosition,
+        : Column(
+            children: [
+              _DetailSection(
+                launchpad: _launchpad,
+              ),
+              Expanded(
+                child: GoogleMap(
+                  markers: _markers!,
+                  mapType: MapType.normal,
+                  initialCameraPosition: _cameraPosition!,
+                ),
+              ),
+            ],
           );
+  }
+}
+
+class _DetailSection extends StatelessWidget {
+  final Launchpad _launchpad;
+
+  const _DetailSection({required Launchpad launchpad})
+      : this._launchpad = launchpad;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return Padding(
+      padding: const EdgeInsets.all(12.0),
+      child: Column(
+        children: [
+          if (_launchpad.name != null)
+            Text(
+              _launchpad.name!,
+              style: theme.textTheme.headline6!
+                  .copyWith(fontWeight: FontWeight.bold),
+            ),
+          SizedBox(
+            height: 20,
+          ),
+          if (_launchpad.locality != null && _launchpad.region != null)
+            Row(
+              children: [
+                Icon(Icons.location_city),
+                Padding(
+                  padding: const EdgeInsets.only(left: 4.0),
+                  child: Text("${_launchpad.locality!}, ${_launchpad.region!}"),
+                ),
+              ],
+            ),
+          Row(
+            children: [
+              Icon(Icons.bar_chart),
+              Padding(
+                padding: const EdgeInsets.only(left: 4.0),
+                child: Text(_launchpad.status.toString()),
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              Icon(Icons.autorenew),
+              Padding(
+                padding: const EdgeInsets.only(left: 4.0),
+                child: Text(
+                    "${tr('launchpadMap.attempts')}: ${_launchpad.launchAttempts.toString()}"),
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              Icon(Icons.check_circle),
+              Padding(
+                padding: const EdgeInsets.only(left: 4.0),
+                child: Text(
+                    "${tr('launchpadMap.successes')}: ${_launchpad.launchSuccesses.toString()}"),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
   }
 }

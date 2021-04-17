@@ -1,6 +1,7 @@
 import 'package:SpaceXFlutterOdyssey/presentation/scenes/launchDetail/launch_detail_viewmodel.dart';
 import 'package:SpaceXFlutterOdyssey/presentation/theme.dart';
 import 'package:SpaceXFlutterOdyssey/presentation/widgets/empty_widget.dart';
+import 'package:SpaceXFlutterOdyssey/presentation/widgets/gesture_bar_widget.dart';
 import 'package:SpaceXFlutterOdyssey/presentation/widgets/launchpad_map_widget.dart';
 import 'package:SpaceXFlutterOdyssey/presentation/widgets/loading_full_screen_widget.dart';
 import 'package:SpaceXFlutterOdyssey/presentation/widgets/youtube_player_widget.dart';
@@ -19,9 +20,25 @@ class LaunchDetailScene extends GetWidget<LaunchDetailViewModel> {
     _showLaunchpadLocation() {
       showModalBottomSheet(
           context: context,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(top: Radius.circular(20.0))),
           builder: (_) {
             return Obx(() {
-              return LaunchpadMap(launchpad: _viewModel.launchpad.value!);
+              return Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: GestureBarWidget(),
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 8.0),
+                      child:
+                          LaunchpadMap(launchpad: _viewModel.launchpad.value!),
+                    ),
+                  ),
+                ],
+              );
             });
           });
     }
