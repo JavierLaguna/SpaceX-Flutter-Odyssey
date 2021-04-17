@@ -24,21 +24,22 @@ class LaunchDetailScene extends GetWidget<LaunchDetailViewModel> {
               borderRadius: BorderRadius.vertical(top: Radius.circular(20.0))),
           builder: (_) {
             return Obx(() {
-              return Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: GestureBarWidget(),
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 8.0),
-                      child:
-                          LaunchpadMap(launchpad: _viewModel.launchpad.value!),
-                    ),
-                  ),
-                ],
-              );
+              return _viewModel.launchpad.value == null
+                  ? LoadingFullScrWidget()
+                  : Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: GestureBarWidget(),
+                        ),
+                        Expanded(
+                          child: Padding(
+                              padding: const EdgeInsets.only(top: 8.0),
+                              child: LaunchpadMap(
+                                  launchpad: _viewModel.launchpad.value!)),
+                        )
+                      ],
+                    );
             });
           });
     }

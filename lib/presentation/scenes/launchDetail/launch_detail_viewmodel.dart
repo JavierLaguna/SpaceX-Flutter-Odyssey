@@ -32,8 +32,6 @@ class LaunchDetailViewModel extends GetxController {
     if (_launch.launchpadId != null) {
       final launchpad = await _getLaunchpadInteractor.get(_launch.launchpadId!);
       this.launchpad.value = launchpad;
-    } else {
-      // TODO: ???
     }
   }
 }
