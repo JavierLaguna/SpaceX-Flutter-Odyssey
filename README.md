@@ -45,6 +45,6 @@ TODO
 
 TODO
 
-## 👨‍💻 Author
+## 💻 Author
 
 > Javier Laguna
