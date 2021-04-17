@@ -44,7 +44,6 @@ TODO
 ## 🛠 Work in progress
 
 TODO
-  > Branch ➡️ feature/cacheUsers
 
 ## 👨‍💻 Author
 
