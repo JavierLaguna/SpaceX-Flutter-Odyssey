@@ -31,7 +31,7 @@ class LaunchpadMap extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return _cameraPosition == null || _markers == null || _markers!.isEmpty
-        ? Text("EMPTY")
+        ? _EmptyLocation()
         : Column(
             children: [
               _DetailSection(
@@ -46,6 +46,31 @@ class LaunchpadMap extends StatelessWidget {
               ),
             ],
           );
+  }
+}
+
+class _EmptyLocation extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(
+          Icons.location_off,
+          size: 80,
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 16.0),
+          child: Text(
+            "launchpadMap.noLocationData",
+            style: theme.textTheme.headline6!
+                .copyWith(fontWeight: FontWeight.bold),
+          ).tr(),
+        ),
+      ],
+    );
   }
 }
 

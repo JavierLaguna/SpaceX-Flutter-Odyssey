@@ -21,6 +21,7 @@
     "launchpadLocation": "Launchpad location"
   },
   "launchpadMap": {
+    "noLocationData": "Unknown launchpad location",
     "attempts": "Attempts",
     "successes": "Successes"
   }
