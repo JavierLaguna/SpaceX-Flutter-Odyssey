@@ -45,6 +45,10 @@ TODO
 
 TODO
 
+## 🔮 Next steps / features
+
+TODO
+
 ## 💻 Author
 
 > Javier Laguna
