@@ -1,6 +1,6 @@
-import 'package:SpaceXFlutterOdyssey/core/utils/enum_from_string.dart';
 import 'package:SpaceXFlutterOdyssey/domain/entities/spacex_theme.dart';
 import 'package:SpaceXFlutterOdyssey/domain/repositories/preferences/preferences_local_repository.dart';
+import 'package:enum_to_string/enum_to_string.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PreferencesRepositoryLocalImpl extends PreferencesRepositoryLocal {
@@ -15,13 +15,14 @@ class PreferencesRepositoryLocalImpl extends PreferencesRepositoryLocal {
       return SpaceXTheme.unknown;
     }
 
-    final theme = enumFromString<SpaceXTheme>(themeString, SpaceXTheme.values);
+    final theme = EnumToString.fromString(SpaceXTheme.values, themeString,
+        camelCase: true);
     return theme ?? SpaceXTheme.unknown;
   }
 
   @override
   Future<void> setTheme(SpaceXTheme theme) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString(pref_key_theme, theme.toString());
+    prefs.setString(pref_key_theme, EnumToString.convertToString(theme));
   }
 }

@@ -1,5 +1,5 @@
 import 'package:SpaceXFlutterOdyssey/presentation/scenes/launches/launches_viewmodel.dart';
-import 'package:SpaceXFlutterOdyssey/presentation/widgets/list_launches_widget.dart';
+import 'package:SpaceXFlutterOdyssey/presentation/widgets/grid_launches_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -16,7 +16,7 @@ class LaunchesScene extends GetWidget<LaunchesViewModel> {
       body: SafeArea(
         bottom: false,
         child: Obx(
-          () => ListLaunchesWidget(
+          () => LaunchesGridWidget(
             launches: _viewModel.launches.value,
             onTapLaunch: _viewModel.onSelectLaunch,
             onRefresh: _viewModel.refreshLaunches,

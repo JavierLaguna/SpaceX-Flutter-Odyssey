@@ -62,6 +62,7 @@ final spaceXLightTheme = ThemeData(
     selectedItemColor: SpaceXColors.orange,
     unselectedItemColor: SpaceXColors.blueGray,
   ),
+  bottomAppBarColor: SpaceXColors.darkGray2,
 );
 
 final spaceXDarkTheme = ThemeData(
@@ -92,4 +93,5 @@ final spaceXDarkTheme = ThemeData(
   cardTheme: CardTheme(
     color: SpaceXColors.darkGray2,
   ),
+  bottomAppBarColor: SpaceXColors.white,
 );

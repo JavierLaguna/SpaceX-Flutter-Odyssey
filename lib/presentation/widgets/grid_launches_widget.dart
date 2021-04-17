@@ -2,12 +2,12 @@ import 'package:SpaceXFlutterOdyssey/domain/entities/launch.dart';
 import 'package:SpaceXFlutterOdyssey/presentation/widgets/loading_full_screen_widget.dart';
 import 'package:flutter/material.dart';
 
-class ListLaunchesWidget extends StatelessWidget {
+class LaunchesGridWidget extends StatelessWidget {
   final List<Launch> _launches;
   final Function(Launch) _onTapLaunch;
   final Future<void> Function()? _onRefresh;
 
-  const ListLaunchesWidget({
+  const LaunchesGridWidget({
     required List<Launch> launches,
     required Function(Launch) onTapLaunch,
     Future<void> Function()? onRefresh,
