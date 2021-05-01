@@ -14,19 +14,7 @@ class SplashViewModel extends GetxController {
     _initAppInteractor.onInitApp();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-
-    _navigateToHomeDelay();
-  }
-
-  _navigateToHomeDelay() async {
-    await Future.delayed(const Duration(seconds: 2));
-    _navigateToHome();
-  }
-
-  _navigateToHome() {
+  navigateToHome() {
     Get.offNamed(SpaceXRoutes.home);
   }
 }
