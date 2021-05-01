@@ -9,6 +9,7 @@ class LaunchesViewModel extends GetxController {
   // -- Properties
   final GetLaunchesInteractor _getLaunchesInteractor;
   RxList<Launch> launches = <Launch>[].obs;
+  RxBool isListMode = false.obs;
 
   // -- Constructor
   LaunchesViewModel(this._getLaunchesInteractor);
@@ -29,6 +30,10 @@ class LaunchesViewModel extends GetxController {
   Future<void> refreshLaunches() async {
     await _getLaunches();
     return;
+  }
+
+  changeShowMode(bool isListMode) {
+    this.isListMode.value = isListMode;
   }
 
   // -- Private methods
