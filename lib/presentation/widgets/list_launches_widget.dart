@@ -3,12 +3,12 @@ import 'package:SpaceXFlutterOdyssey/presentation/widgets/loading_full_screen_wi
 import 'package:flutter/material.dart';
 import 'launch_image_widget.dart';
 
-class LaunchesGridWidget extends StatelessWidget {
+class LaunchesListWidget extends StatelessWidget {
   final List<Launch> _launches;
   final Function(Launch) _onTapLaunch;
   final Future<void> Function()? _onRefresh;
 
-  const LaunchesGridWidget({
+  const LaunchesListWidget({
     required List<Launch> launches,
     required Function(Launch) onTapLaunch,
     Future<void> Function()? onRefresh,
@@ -25,12 +25,12 @@ class LaunchesGridWidget extends StatelessWidget {
           : _onRefresh != null
               ? RefreshIndicator(
                   onRefresh: _onRefresh!,
-                  child: _LaunchesGrid(
+                  child: _LaunchesList(
                     launches: _launches,
                     onTapLaunch: _onTapLaunch,
                   ),
                 )
-              : _LaunchesGrid(
+              : _LaunchesList(
                   launches: _launches,
                   onTapLaunch: _onTapLaunch,
                 ),
@@ -38,11 +38,11 @@ class LaunchesGridWidget extends StatelessWidget {
   }
 }
 
-class _LaunchesGrid extends StatelessWidget {
+class _LaunchesList extends StatelessWidget {
   final List<Launch> _launches;
   final Function(Launch) _onTapLaunch;
 
-  const _LaunchesGrid({
+  const _LaunchesList({
     required List<Launch> launches,
     required Function(Launch) onTapLaunch,
   })   : _launches = launches,
@@ -52,9 +52,7 @@ class _LaunchesGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return GridView.builder(
-      gridDelegate:
-          SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+    return ListView.builder(
       itemCount: _launches.length,
       itemBuilder: (context, index) {
         final launch = _launches[index];
@@ -73,12 +71,10 @@ class _LaunchesGrid extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 children: [
-                  Expanded(
-                    child: Hero(
-                      tag: "launch_image_${launch.name}",
-                      child: LaunchImage(
-                        remoteImage: launch.patchImageSmall,
-                      ),
+                  Hero(
+                    tag: "launch_image_${launch.name}",
+                    child: LaunchImage(
+                      remoteImage: launch.patchImageSmall,
                     ),
                   ),
                   Padding(

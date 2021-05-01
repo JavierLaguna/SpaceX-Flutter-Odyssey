@@ -2,6 +2,7 @@ import 'package:SpaceXFlutterOdyssey/presentation/scenes/launchDetail/launch_det
 import 'package:SpaceXFlutterOdyssey/presentation/theme.dart';
 import 'package:SpaceXFlutterOdyssey/presentation/widgets/empty_widget.dart';
 import 'package:SpaceXFlutterOdyssey/presentation/widgets/gesture_bar_widget.dart';
+import 'package:SpaceXFlutterOdyssey/presentation/widgets/launch_image_widget.dart';
 import 'package:SpaceXFlutterOdyssey/presentation/widgets/launchpad_map_widget.dart';
 import 'package:SpaceXFlutterOdyssey/presentation/widgets/loading_full_screen_widget.dart';
 import 'package:SpaceXFlutterOdyssey/presentation/widgets/youtube_player_widget.dart';
@@ -65,23 +66,44 @@ class LaunchDetailScene extends GetWidget<LaunchDetailViewModel> {
           child: SingleChildScrollView(
             child: Column(
               children: [
+                _Separator(),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Hero(
+                        tag: "launch_image_${launch.name}",
+                        child: Container(
+                          height: 80,
+                          child: LaunchImage(
+                            remoteImage: launch.patchImageSmall,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: Text(
+                          launch.name,
+                          style: theme.textTheme.headline4!
+                              .copyWith(fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                _Separator(),
+                _Separator(),
                 launch.youtubeId != null
                     ? YoutubePlayerWidget(
                         videoId: launch.youtubeId!,
                       )
                     : EmptyWidget(),
                 Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 24.0, vertical: 16.0),
+                  padding: const EdgeInsets.all(24.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        launch.name,
-                        style: theme.textTheme.headline4!
-                            .copyWith(fontWeight: FontWeight.bold),
-                      ),
-                      _Separator(),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
