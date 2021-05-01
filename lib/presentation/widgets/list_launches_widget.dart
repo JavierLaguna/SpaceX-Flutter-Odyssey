@@ -1,6 +1,7 @@
 import 'package:SpaceXFlutterOdyssey/domain/entities/launch.dart';
 import 'package:SpaceXFlutterOdyssey/presentation/widgets/loading_full_screen_widget.dart';
 import 'package:flutter/material.dart';
+import 'launch_image_widget.dart';
 
 class LaunchesListWidget extends StatelessWidget {
   final List<Launch> _launches;
@@ -70,8 +71,11 @@ class _LaunchesList extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 children: [
-                  _LaunchImage(
-                    remoteImage: launch.patchImageSmall,
+                  Hero(
+                    tag: "launch_image_${launch.name}",
+                    child: LaunchImage(
+                      remoteImage: launch.patchImageSmall,
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 8.0),
@@ -89,22 +93,6 @@ class _LaunchesList extends StatelessWidget {
         );
       },
     );
-  }
-}
-
-class _LaunchImage extends StatelessWidget {
-  final String? _remoteImage;
-
-  const _LaunchImage({String? remoteImage}) : this._remoteImage = remoteImage;
-
-  @override
-  Widget build(BuildContext context) {
-    return _remoteImage == null
-        ? Image.asset('assets/images/launch-placeholder.png')
-        : Image(
-            image: NetworkImage(_remoteImage!),
-            fit: BoxFit.fill,
-          );
   }
 }
 
