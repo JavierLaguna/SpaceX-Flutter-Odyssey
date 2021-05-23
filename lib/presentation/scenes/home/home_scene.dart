@@ -18,7 +18,7 @@ class HomeScene extends GetWidget<HomeViewModel> {
         child: Obx(
           () => AnimatedLaunchesList(
             launches: _viewModel.latestLaunches.value,
-            onTapLaunch: (_) {},
+            onTapLaunch: _viewModel.onSelectLaunch,
           ),
         ),
       ),

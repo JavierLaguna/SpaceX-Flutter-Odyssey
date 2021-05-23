@@ -153,7 +153,7 @@ class __AnimatedLaunchesListState extends State<_AnimatedLaunchesList> {
           scale: 1.6,
           alignment: Alignment.bottomCenter,
           child: PageView.builder(
-            // allowImplicitScrolling: true,
+            allowImplicitScrolling: true,
             controller: _pageController,
             scrollDirection: Axis.vertical,
             onPageChanged: (value) {
@@ -186,8 +186,12 @@ class __AnimatedLaunchesListState extends State<_AnimatedLaunchesList> {
                     opacity: opacity,
                     child: Hero(
                       tag: "launch_image_${launch.name}",
-                      child: InkWell(
-                        onTap: widget._onTapLaunch(launch),
+                      child: GestureDetector(
+                        onTap: () {
+                          if (opacity == 1.0) {
+                            widget._onTapLaunch(launch);
+                          }
+                        },
                         child: LaunchImage(
                           remoteImage: launch.patchImageLarge,
                         ),
