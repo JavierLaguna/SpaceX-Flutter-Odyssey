@@ -5,6 +5,6 @@ import 'package:get/get.dart';
 class HomeInjector extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut(() => HomeViewModel(Get.find<GetLatestLaunchesInteractor>()));
+    Get.lazyPut(() => HomeViewModel(Get.find<GetUpcomingLaunchesInteractor>()));
   }
 }

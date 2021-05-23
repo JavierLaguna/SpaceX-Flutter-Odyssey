@@ -16,8 +16,8 @@ class LaunchService {
     return responseModel.launches;
   }
 
-  Future<List<Launch>> getLatestLaunches() async {
-    final url = Uri.parse('$baseUrl/launches/latest');
+  Future<List<Launch>> getUpcomingLaunches() async {
+    final url = Uri.parse('$baseUrl/launches/upcoming');
 
     final response = await http.get(url);
     final responseModel =

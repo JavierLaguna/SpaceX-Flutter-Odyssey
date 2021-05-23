@@ -71,8 +71,8 @@ class MainInjector extends Bindings {
 
   // Interactors
   _interactors() {
-    Get.lazyPut<GetLatestLaunchesInteractor>(
-        () => GetLatestLaunchesInteractorImpl(
+    Get.lazyPut<GetUpcomingLaunchesInteractor>(
+        () => GetUpcomingLaunchesInteractorImpl(
               Get.find<LaunchRepositoryRemote>(),
             ));
 

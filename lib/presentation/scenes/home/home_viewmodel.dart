@@ -7,11 +7,11 @@ import 'package:get/get.dart';
 
 class HomeViewModel extends GetxController {
   // -- Properties
-  final GetLatestLaunchesInteractor _getLatestLaunchesInteractor;
+  final GetUpcomingLaunchesInteractor _getUpcomingLaunchesInteractor;
   RxList<Launch> latestLaunches = <Launch>[].obs;
 
   // -- Constructor
-  HomeViewModel(this._getLatestLaunchesInteractor);
+  HomeViewModel(this._getUpcomingLaunchesInteractor);
 
   // -- Lifecycle
   @override
@@ -28,7 +28,7 @@ class HomeViewModel extends GetxController {
 
   // -- Private methods
   _getLatestLaunches() async {
-    final latestLaunches = await _getLatestLaunchesInteractor.get();
+    final latestLaunches = await _getUpcomingLaunchesInteractor.get();
     this.latestLaunches.assignAll(latestLaunches);
   }
 
