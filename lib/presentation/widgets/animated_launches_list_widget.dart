@@ -1,7 +1,7 @@
 import 'package:SpaceXFlutterOdyssey/domain/entities/launch.dart';
 import 'package:SpaceXFlutterOdyssey/presentation/widgets/loading_full_screen_widget.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-
 import 'launch_image_widget.dart';
 
 class AnimatedLaunchesList extends StatelessWidget {
@@ -44,7 +44,10 @@ class __AnimatedLaunchesListState extends State<_AnimatedLaunchesList> {
     viewportFraction: 0.35,
   );
 
+  final _textPageController = PageController();
+
   double _currentPage = 0.0;
+  double _textCurrentPage = 0.0;
 
   void _scrollListener() {
     setState(() {
@@ -52,9 +55,16 @@ class __AnimatedLaunchesListState extends State<_AnimatedLaunchesList> {
     });
   }
 
+  void _textScrollListener() {
+    setState(() {
+      _textCurrentPage = _textPageController.page ?? 0.0;
+    });
+  }
+
   @override
   void initState() {
     _pageController.addListener(_scrollListener);
+    _textPageController.addListener(_textScrollListener);
 
     super.initState();
   }
@@ -64,6 +74,9 @@ class __AnimatedLaunchesListState extends State<_AnimatedLaunchesList> {
     _pageController.removeListener(_scrollListener);
     _pageController.dispose();
 
+    _textPageController.removeListener(_textScrollListener);
+    _textPageController.dispose();
+
     super.dispose();
   }
 
@@ -71,6 +84,7 @@ class __AnimatedLaunchesListState extends State<_AnimatedLaunchesList> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final size = MediaQuery.of(context).size;
+    final currentLaunch = widget._launches[_currentPage.toInt()];
 
     return Stack(
       children: [
@@ -78,9 +92,43 @@ class __AnimatedLaunchesListState extends State<_AnimatedLaunchesList> {
           left: 0,
           top: 0,
           right: 0,
-          height: 100,
-          child: Container(
-            color: Colors.red,
+          height: 130,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            child: Column(
+              children: [
+                Expanded(
+                  child: PageView.builder(
+                      controller: _textPageController,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: widget._launches.length,
+                      itemBuilder: (_, index) {
+                        final launch = widget._launches[index];
+                        final opacity = (1 - (index - _textCurrentPage).abs())
+                            .clamp(0.0, 1.0);
+
+                        return Opacity(
+                          opacity: opacity,
+                          child: Text(
+                            launch.name,
+                            textAlign: TextAlign.center,
+                            style: theme.textTheme.headline4!
+                                .copyWith(fontWeight: FontWeight.bold),
+                          ),
+                        );
+                      }),
+                ),
+                AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 200),
+                  child: Text(
+                    DateFormat('E, d MMM, yyyy  -  h:mm a')
+                        .format(currentLaunch.launchDateLocal),
+                    style: theme.textTheme.subtitle2,
+                    key: Key(currentLaunch.name),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
         Positioned(
@@ -105,9 +153,16 @@ class __AnimatedLaunchesListState extends State<_AnimatedLaunchesList> {
           scale: 1.6,
           alignment: Alignment.bottomCenter,
           child: PageView.builder(
-            allowImplicitScrolling: true,
+            // allowImplicitScrolling: true,
             controller: _pageController,
             scrollDirection: Axis.vertical,
+            onPageChanged: (value) {
+              if (value < widget._launches.length) {
+                _textPageController.animateToPage(value,
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeOut); // TODO: const duration
+              }
+            },
             itemCount: widget._launches.length + 1,
             itemBuilder: (_, index) {
               if (index == 0) {
@@ -125,12 +180,18 @@ class __AnimatedLaunchesListState extends State<_AnimatedLaunchesList> {
                   alignment: Alignment.bottomCenter,
                   transform: Matrix4.identity()
                     ..setEntry(3, 2, 0.001)
-                    ..translate(0.0, size.height / 2.6 * (1 - value).abs())
+                    ..translate(0.0, size.height / 2.8 * (1 - value).abs())
                     ..scale(value),
                   child: Opacity(
                     opacity: opacity,
-                    child: LaunchImage(
-                      remoteImage: launch.patchImageLarge,
+                    child: Hero(
+                      tag: "launch_image_${launch.name}",
+                      child: InkWell(
+                        onTap: widget._onTapLaunch(launch),
+                        child: LaunchImage(
+                          remoteImage: launch.patchImageLarge,
+                        ),
+                      ),
                     ),
                   ),
                 ),
