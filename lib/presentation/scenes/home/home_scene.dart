@@ -11,7 +11,7 @@ class HomeScene extends GetWidget<HomeViewModel> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('launches.title').tr(),
+        title: Text('home.title').tr(),
       ),
       body: SafeArea(
         bottom: false,

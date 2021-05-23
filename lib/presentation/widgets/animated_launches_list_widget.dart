@@ -40,42 +40,41 @@ class _AnimatedLaunchesList extends StatefulWidget {
 }
 
 class __AnimatedLaunchesListState extends State<_AnimatedLaunchesList> {
-  final _pageController = PageController(
+  final _headerPageController = PageController();
+  final _bodyPageController = PageController(
     viewportFraction: 0.35,
   );
 
-  final _textPageController = PageController();
-
-  double _currentPage = 0.0;
-  double _textCurrentPage = 0.0;
-
-  void _scrollListener() {
-    setState(() {
-      _currentPage = _pageController.page ?? 0.0;
-    });
-  }
+  double _headerCurrentPage = 0.0;
+  double _bodyCurrentPage = 0.0;
 
   void _textScrollListener() {
     setState(() {
-      _textCurrentPage = _textPageController.page ?? 0.0;
+      _headerCurrentPage = _headerPageController.page ?? 0.0;
+    });
+  }
+
+  void _scrollListener() {
+    setState(() {
+      _bodyCurrentPage = _bodyPageController.page ?? 0.0;
     });
   }
 
   @override
   void initState() {
-    _pageController.addListener(_scrollListener);
-    _textPageController.addListener(_textScrollListener);
+    _headerPageController.addListener(_textScrollListener);
+    _bodyPageController.addListener(_scrollListener);
 
     super.initState();
   }
 
   @override
   void dispose() {
-    _pageController.removeListener(_scrollListener);
-    _pageController.dispose();
+    _headerPageController.removeListener(_textScrollListener);
+    _headerPageController.dispose();
 
-    _textPageController.removeListener(_textScrollListener);
-    _textPageController.dispose();
+    _bodyPageController.removeListener(_scrollListener);
+    _bodyPageController.dispose();
 
     super.dispose();
   }
@@ -84,51 +83,48 @@ class __AnimatedLaunchesListState extends State<_AnimatedLaunchesList> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final size = MediaQuery.of(context).size;
-    final currentLaunch = widget._launches[_currentPage.toInt()];
+    final currentLaunch = widget._launches[_headerCurrentPage.toInt()];
 
     return Stack(
       children: [
         Positioned(
           left: 0,
-          top: 0,
+          top: 32,
           right: 0,
-          height: 130,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: Column(
-              children: [
-                Expanded(
-                  child: PageView.builder(
-                      controller: _textPageController,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: widget._launches.length,
-                      itemBuilder: (_, index) {
-                        final launch = widget._launches[index];
-                        final opacity = (1 - (index - _textCurrentPage).abs())
-                            .clamp(0.0, 1.0);
+          height: 100,
+          child: Column(
+            children: [
+              Expanded(
+                child: PageView.builder(
+                    controller: _headerPageController,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: widget._launches.length,
+                    itemBuilder: (_, index) {
+                      final launch = widget._launches[index];
+                      final opacity = (1 - (index - _headerCurrentPage).abs())
+                          .clamp(0.0, 1.0);
 
-                        return Opacity(
-                          opacity: opacity,
-                          child: Text(
-                            launch.name,
-                            textAlign: TextAlign.center,
-                            style: theme.textTheme.headline4!
-                                .copyWith(fontWeight: FontWeight.bold),
-                          ),
-                        );
-                      }),
+                      return Opacity(
+                        opacity: opacity,
+                        child: Text(
+                          launch.name,
+                          textAlign: TextAlign.center,
+                          style: theme.textTheme.headline4!
+                              .copyWith(fontWeight: FontWeight.bold),
+                        ),
+                      );
+                    }),
+              ),
+              AnimatedSwitcher(
+                duration: const Duration(milliseconds: 200),
+                child: Text(
+                  DateFormat('E, d MMM, yyyy  -  h:mm a')
+                      .format(currentLaunch.launchDateLocal),
+                  style: theme.textTheme.subtitle2,
+                  key: Key(currentLaunch.name),
                 ),
-                AnimatedSwitcher(
-                  duration: const Duration(milliseconds: 200),
-                  child: Text(
-                    DateFormat('E, d MMM, yyyy  -  h:mm a')
-                        .format(currentLaunch.launchDateLocal),
-                    style: theme.textTheme.subtitle2,
-                    key: Key(currentLaunch.name),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
         Positioned(
@@ -154,13 +150,13 @@ class __AnimatedLaunchesListState extends State<_AnimatedLaunchesList> {
           alignment: Alignment.bottomCenter,
           child: PageView.builder(
             allowImplicitScrolling: true,
-            controller: _pageController,
+            controller: _bodyPageController,
             scrollDirection: Axis.vertical,
             onPageChanged: (value) {
               if (value < widget._launches.length) {
-                _textPageController.animateToPage(value,
+                _headerPageController.animateToPage(value,
                     duration: const Duration(milliseconds: 300),
-                    curve: Curves.easeOut); // TODO: const duration
+                    curve: Curves.easeOut);
               }
             },
             itemCount: widget._launches.length + 1,
@@ -170,7 +166,7 @@ class __AnimatedLaunchesListState extends State<_AnimatedLaunchesList> {
               }
 
               final launch = widget._launches[index - 1];
-              final result = _currentPage - index + 1;
+              final result = _bodyCurrentPage - index + 1;
               final value = -0.4 * result + 1;
               final opacity = value.clamp(0.0, 1.0);
 
@@ -188,7 +184,7 @@ class __AnimatedLaunchesListState extends State<_AnimatedLaunchesList> {
                       tag: "launch_image_${launch.name}",
                       child: GestureDetector(
                         onTap: () {
-                          if (opacity == 1.0) {
+                          if (result == 0.0) {
                             widget._onTapLaunch(launch);
                           }
                         },
