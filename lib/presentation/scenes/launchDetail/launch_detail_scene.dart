@@ -51,7 +51,6 @@ class LaunchDetailScene extends GetWidget<LaunchDetailViewModel> {
       }
 
       final launch = _viewModel.launch.value!;
-      final success = launch.success ?? false;
 
       return Scaffold(
         appBar: AppBar(
@@ -111,17 +110,19 @@ class LaunchDetailScene extends GetWidget<LaunchDetailViewModel> {
                             '${tr('launchDetail.flightNumber')}${launch.flightNumber.toString()}',
                             style: theme.textTheme.subtitle1,
                           ),
-                          Text(
-                            success
-                                ? 'launchDetail.success'
-                                : 'launchDetail.failure',
-                            style: theme.textTheme.headline6!.copyWith(
-                              fontWeight: FontWeight.bold,
-                              color: success
-                                  ? theme.colorScheme.success
-                                  : theme.colorScheme.error,
-                            ),
-                          ).tr(),
+                          launch.success != null
+                              ? Text(
+                                  launch.success!
+                                      ? 'launchDetail.success'
+                                      : 'launchDetail.failure',
+                                  style: theme.textTheme.headline6!.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    color: launch.success!
+                                        ? theme.colorScheme.success
+                                        : theme.colorScheme.error,
+                                  ),
+                                ).tr()
+                              : EmptyWidget(),
                         ],
                       ),
                       _Separator(),

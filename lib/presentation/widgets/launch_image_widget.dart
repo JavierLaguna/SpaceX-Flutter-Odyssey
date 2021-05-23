@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class LaunchImage extends StatelessWidget {
+  final String _kLocalPlaceholder = 'assets/images/launch-placeholder.png';
   final String? _remoteImage;
 
   const LaunchImage({String? remoteImage}) : this._remoteImage = remoteImage;
@@ -8,10 +9,10 @@ class LaunchImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return _remoteImage == null
-        ? Image.asset('assets/images/launch-placeholder.png')
-        : Image(
-            image: NetworkImage(_remoteImage!),
-            fit: BoxFit.fill,
+        ? Image.asset(_kLocalPlaceholder)
+        : FadeInImage.assetNetwork(
+            placeholder: _kLocalPlaceholder,
+            image: _remoteImage!,
           );
   }
 }

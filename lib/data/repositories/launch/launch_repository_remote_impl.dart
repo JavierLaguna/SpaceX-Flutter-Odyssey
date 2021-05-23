@@ -9,7 +9,11 @@ class LaunchRepositoryRemoteImpl extends LaunchRepositoryRemote {
 
   @override
   Future<List<Launch>> getAllLaunches() async {
-    final launches = await _launchService.getAllLaunches();
-    return launches;
+    return await _launchService.getAllLaunches();
+  }
+
+  @override
+  Future<List<Launch>> getUpcomingLaunches() async {
+    return await _launchService.getUpcomingLaunches();
   }
 }

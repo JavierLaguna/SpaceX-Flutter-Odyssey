@@ -9,6 +9,7 @@ import 'package:SpaceXFlutterOdyssey/data/repositories/preferences/preferences_r
 import 'package:SpaceXFlutterOdyssey/domain/interactors/app/init_app_interactor.dart';
 import 'package:SpaceXFlutterOdyssey/domain/interactors/landpads/get_landpad_interactor.dart';
 import 'package:SpaceXFlutterOdyssey/domain/interactors/landpads/get_landpads_interactor.dart';
+import 'package:SpaceXFlutterOdyssey/domain/interactors/launches/get_latest_launches_interactor.dart';
 import 'package:SpaceXFlutterOdyssey/domain/interactors/launches/get_launches_interactor.dart';
 import 'package:SpaceXFlutterOdyssey/domain/interactors/launchpads/get_launchpad_interactor.dart';
 import 'package:SpaceXFlutterOdyssey/domain/interactors/launchpads/get_launchpads_interactor.dart';
@@ -70,6 +71,11 @@ class MainInjector extends Bindings {
 
   // Interactors
   _interactors() {
+    Get.lazyPut<GetUpcomingLaunchesInteractor>(
+        () => GetUpcomingLaunchesInteractorImpl(
+              Get.find<LaunchRepositoryRemote>(),
+            ));
+
     Get.lazyPut<GetLaunchesInteractor>(() => GetLaunchesInteractorImpl(
           Get.find<LaunchRepositoryRemote>(),
         ));
