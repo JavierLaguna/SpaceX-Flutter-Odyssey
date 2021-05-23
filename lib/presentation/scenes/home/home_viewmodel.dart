@@ -1,20 +1,26 @@
-import 'package:SpaceXFlutterOdyssey/presentation/scenes/launches/launches_scene.dart';
-import 'package:SpaceXFlutterOdyssey/presentation/scenes/settings/settings_scene.dart';
-import 'package:flutter/material.dart';
+import 'package:SpaceXFlutterOdyssey/domain/entities/launch.dart';
+import 'package:SpaceXFlutterOdyssey/domain/interactors/launches/get_latest_launches_interactor.dart';
 import 'package:get/get.dart';
 
 class HomeViewModel extends GetxController {
-  final List<Widget> _scenes = [
-    LaunchesScene(),
-    Placeholder(),
-    SettingsScene(),
-  ];
+  // -- Properties
+  final GetLatestLaunchesInteractor _getLatestLaunchesInteractor;
+  RxList<Launch> latestLaunches = <Launch>[].obs;
 
-  final currentIndex = 0.obs;
+  // -- Constructor
+  HomeViewModel(this._getLatestLaunchesInteractor);
 
-  Widget get currentScene => _scenes[currentIndex.value];
+  // -- Lifecycle
+  @override
+  void onReady() {
+    super.onReady();
 
-  void changeScene(int _index) {
-    currentIndex.value = _index;
+    _getLatestLaunches();
+  }
+
+  // -- Private methods
+  _getLatestLaunches() async {
+    final latestLaunches = await _getLatestLaunchesInteractor.get();
+    this.latestLaunches.assignAll(latestLaunches);
   }
 }

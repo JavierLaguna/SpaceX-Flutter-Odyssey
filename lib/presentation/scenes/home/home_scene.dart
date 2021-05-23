@@ -8,26 +8,11 @@ class HomeScene extends GetWidget<HomeViewModel> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => Scaffold(
-        bottomNavigationBar: BottomNavigationBar(
-          showUnselectedLabels: false,
-          currentIndex: _viewModel.currentIndex.value,
-          onTap: _viewModel.changeScene,
-          items: [
-            BottomNavigationBarItem(
-                icon: Icon(Icons.airplanemode_active_rounded),
-                label: tr('home.tabs.launches')),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.precision_manufacturing_rounded),
-                label: tr('home.tabs.rockets')),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.app_settings_alt_rounded),
-                label: tr('home.tabs.settings')),
-          ],
-        ),
-        body: _viewModel.currentScene,
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('launches.title').tr(),
       ),
+      body: SafeArea(bottom: false, child: Text("HOME")),
     );
   }
 }

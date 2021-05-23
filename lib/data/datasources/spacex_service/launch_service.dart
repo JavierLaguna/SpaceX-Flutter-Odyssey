@@ -15,4 +15,14 @@ class LaunchService {
 
     return responseModel.launches;
   }
+
+  Future<List<Launch>> getLatestLaunches() async {
+    final url = Uri.parse('$baseUrl/launches/latest');
+
+    final response = await http.get(url);
+    final responseModel =
+    GetLaunchesServiceResponse.makeFromResponse(response.body);
+
+    return responseModel.launches;
+  }
 }
