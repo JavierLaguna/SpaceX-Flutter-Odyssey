@@ -7,7 +7,16 @@ Little iOS and Android client for consume [SpaceX](https://api.spacexdata.com/v4
 
 ## 📷 Screenshots
 
-TODO
+![Splash](/.readme_resources/splash.png)
+
+![Upcoming Launches](/.readme_resources/upcoming_launches.png)
+![Launches Grid](/.readme_resources/all_launches_grid.png)
+![Launches List](/.readme_resources/all_launches_list.png)
+
+![Launch Detail](/.readme_resources/launch_detail.png)
+![Launch Location](/.readme_resources/launch_location.png)
+
+![Settings](/.readme_resources/settings.png)
 
 ## 🚩 Instructions
 
@@ -26,9 +35,13 @@ TODO
 [GitFlow](https://datasift.github.io/gitflow/IntroducingGitFlow.html) as Git methodology.
 
 ## ✅ App Features
+
+##### Upcoming Launches
+
+- List next upcoming launches on a carousel
 ##### Launches
 
-- List all launches on a grid
+- List all launches on a grid or on a list
 - Pull to refresh launches list
 
 ##### Launch detail
@@ -43,11 +56,10 @@ TODO
 
 ## 🛠 Work in progress
 
-TODO
 
 ## 🔮 Next steps / features
 
-TODO
+- Search launch by name
 
 ## 💻 Author
 
