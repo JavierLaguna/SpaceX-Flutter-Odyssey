@@ -14,8 +14,8 @@ class LaunchDetailViewModel extends GetxController {
   LaunchDetailViewModel(
       {required Launch launch,
       required GetLaunchpadInteractor getLaunchpadInteractor})
-      : this._launch = launch,
-        this._getLaunchpadInteractor = getLaunchpadInteractor {
+      : _launch = launch,
+        _getLaunchpadInteractor = getLaunchpadInteractor {
     this.launch.value = launch;
   }
 
@@ -28,7 +28,7 @@ class LaunchDetailViewModel extends GetxController {
   }
 
   // -- Private methods
-  _getLaunchpad() async {
+  void _getLaunchpad() async {
     if (_launch.launchpadId != null) {
       final launchpad = await _getLaunchpadInteractor.get(_launch.launchpadId!);
       this.launchpad.value = launchpad;

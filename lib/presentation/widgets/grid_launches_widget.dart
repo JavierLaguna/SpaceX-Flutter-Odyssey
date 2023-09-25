@@ -75,7 +75,7 @@ class _LaunchesGrid extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Hero(
-                      tag: "launch_image_${launch.name}",
+                      tag: 'launch_image_${launch.name}',
                       child: LaunchImage(
                         remoteImage: launch.patchImageSmall,
                       ),
@@ -85,7 +85,7 @@ class _LaunchesGrid extends StatelessWidget {
                     padding: const EdgeInsets.only(top: 8.0),
                     child: Text(
                       launch.name,
-                      style: theme.textTheme.headline6!
+                      style: theme.textTheme.titleLarge!
                           .copyWith(fontWeight: FontWeight.bold),
                       overflow: TextOverflow.ellipsis,
                     ),

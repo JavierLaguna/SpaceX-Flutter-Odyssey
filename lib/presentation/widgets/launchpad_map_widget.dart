@@ -11,17 +11,17 @@ class LaunchpadMap extends StatelessWidget {
   Set<Marker>? _markers;
   CameraPosition? _cameraPosition;
 
-  LaunchpadMap({required Launchpad launchpad}) : this._launchpad = launchpad {
+  LaunchpadMap({required Launchpad launchpad}) : _launchpad = launchpad {
     if (launchpad.latitude != null && launchpad.longitude != null) {
-      this._markers = Set.from([
+      _markers = {
         Marker(
             markerId: MarkerId(launchpad.id),
             position: LatLng(launchpad.latitude!, launchpad.longitude!),
             infoWindow:
                 InfoWindow(title: launchpad.name, snippet: launchpad.fullName))
-      ]);
+      };
 
-      this._cameraPosition = CameraPosition(
+      _cameraPosition = CameraPosition(
         target: LatLng(launchpad.latitude!, launchpad.longitude!),
         zoom: _mapZoom,
       );
@@ -64,8 +64,8 @@ class _EmptyLocation extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(top: 16.0),
           child: Text(
-            "launchpadMap.noLocationData",
-            style: theme.textTheme.headline6!
+            'launchpadMap.noLocationData',
+            style: theme.textTheme.titleLarge!
                 .copyWith(fontWeight: FontWeight.bold),
           ).tr(),
         ),
@@ -78,7 +78,7 @@ class _DetailSection extends StatelessWidget {
   final Launchpad _launchpad;
 
   const _DetailSection({required Launchpad launchpad})
-      : this._launchpad = launchpad;
+      : _launchpad = launchpad;
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +91,7 @@ class _DetailSection extends StatelessWidget {
           if (_launchpad.name != null)
             Text(
               _launchpad.name!,
-              style: theme.textTheme.headline6!
+              style: theme.textTheme.titleLarge!
                   .copyWith(fontWeight: FontWeight.bold),
             ),
           SizedBox(
@@ -103,7 +103,7 @@ class _DetailSection extends StatelessWidget {
                 Icon(Icons.location_city),
                 Padding(
                   padding: const EdgeInsets.only(left: 4.0),
-                  child: Text("${_launchpad.locality!}, ${_launchpad.region!}"),
+                  child: Text('${_launchpad.locality!}, ${_launchpad.region!}'),
                 ),
               ],
             ),

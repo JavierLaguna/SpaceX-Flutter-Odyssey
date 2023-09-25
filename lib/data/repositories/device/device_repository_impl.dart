@@ -5,7 +5,7 @@ import 'package:flutter/scheduler.dart';
 class DeviceRepositoryImpl extends DeviceRepository {
   @override
   Future<bool> isDeviceDarkModeEnabled() async {
-    final brightness = SchedulerBinding.instance!.window.platformBrightness;
+    final brightness = SchedulerBinding.instance.window.platformBrightness;
     return brightness == Brightness.dark;
   }
 }

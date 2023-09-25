@@ -38,8 +38,8 @@ class LaunchpadServiceResponse extends Launchpad {
             timezone: timezone);
 
   factory LaunchpadServiceResponse.fromMap(Map<String, dynamic> map) {
-    final launchesIds = new List<String>.from(map['launches']);
-    final rocketsIds = new List<String>.from(map['rockets']);
+    final launchesIds = List<String>.from(map['launches']);
+    final rocketsIds = List<String>.from(map['rockets']);
 
     final status = EnumToString.fromString(
         LaunchpadStatus.values, map['status'],

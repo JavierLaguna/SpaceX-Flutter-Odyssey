@@ -9,10 +9,10 @@ class YoutubePlayerWidget extends StatelessWidget {
   YoutubePlayerWidget({required this.videoId, this.autoPlay = false})
       : super() {
 
-    this._controller = YoutubePlayerController(
-      initialVideoId: this.videoId,
+    _controller = YoutubePlayerController(
+      initialVideoId: videoId,
       flags: YoutubePlayerFlags(
-        autoPlay: this.autoPlay,
+        autoPlay: autoPlay,
       ),
     );
   }

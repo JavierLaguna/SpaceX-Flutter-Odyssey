@@ -22,17 +22,17 @@ class HomeViewModel extends GetxController {
   }
 
   // -- Public methods
-  onSelectLaunch(Launch launch) {
+  void onSelectLaunch(Launch launch) {
     _goToLaunchDetail(launch);
   }
 
   // -- Private methods
-  _getLatestLaunches() async {
+  void _getLatestLaunches() async {
     final latestLaunches = await _getUpcomingLaunchesInteractor.get();
     this.latestLaunches.assignAll(latestLaunches);
   }
 
-  _goToLaunchDetail(Launch launch) {
+  void _goToLaunchDetail(Launch launch) {
     Get.lazyPut(() => LaunchDetailViewModel(
         launch: launch,
         getLaunchpadInteractor: Get.find<GetLaunchpadInteractor>()));

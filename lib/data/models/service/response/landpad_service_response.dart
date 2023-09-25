@@ -37,7 +37,7 @@ class LandPadServiceResponse extends LandPad {
             details: details);
 
   factory LandPadServiceResponse.fromMap(Map<String, dynamic> map) {
-    final launchesIds = new List<String>.from(map['launches']);
+    final launchesIds = List<String>.from(map['launches']);
 
     final status = EnumToString.fromString(LandPadStatus.values, map['status'],
         camelCase: true);

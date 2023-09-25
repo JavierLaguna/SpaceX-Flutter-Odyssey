@@ -9,7 +9,7 @@ import 'package:easy_localization/easy_localization.dart';
 class LaunchesScene extends GetWidget<LaunchesViewModel> {
   LaunchesViewModel get _viewModel => super.controller;
 
-  _getBodyWidget({
+  Widget _getBodyWidget({
     required bool isListMode,
     required List<Launch> launches,
     required Function(Launch) onTapLaunch,

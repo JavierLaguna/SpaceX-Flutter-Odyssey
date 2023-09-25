@@ -7,7 +7,6 @@ import 'package:SpaceXFlutterOdyssey/presentation/widgets/launchpad_map_widget.d
 import 'package:SpaceXFlutterOdyssey/presentation/widgets/loading_full_screen_widget.dart';
 import 'package:SpaceXFlutterOdyssey/presentation/widgets/youtube_player_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -18,7 +17,7 @@ class LaunchDetailScene extends GetWidget<LaunchDetailViewModel> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    _showLaunchpadLocation() {
+    void _showLaunchpadLocation() {
       showModalBottomSheet(
           context: context,
           shape: RoundedRectangleBorder(
@@ -72,7 +71,7 @@ class LaunchDetailScene extends GetWidget<LaunchDetailViewModel> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Hero(
-                        tag: "launch_image_${launch.name}",
+                        tag: 'launch_image_${launch.name}',
                         child: Container(
                           height: 80,
                           child: LaunchImage(
@@ -84,7 +83,7 @@ class LaunchDetailScene extends GetWidget<LaunchDetailViewModel> {
                         padding: const EdgeInsets.only(left: 8.0),
                         child: Text(
                           launch.name,
-                          style: theme.textTheme.headline4!
+                          style: theme.textTheme.headlineMedium!
                               .copyWith(fontWeight: FontWeight.bold),
                         ),
                       ),
@@ -108,14 +107,14 @@ class LaunchDetailScene extends GetWidget<LaunchDetailViewModel> {
                         children: [
                           Text(
                             '${tr('launchDetail.flightNumber')}${launch.flightNumber.toString()}',
-                            style: theme.textTheme.subtitle1,
+                            style: theme.textTheme.titleMedium,
                           ),
                           launch.success != null
                               ? Text(
                                   launch.success!
                                       ? 'launchDetail.success'
                                       : 'launchDetail.failure',
-                                  style: theme.textTheme.headline6!.copyWith(
+                                  style: theme.textTheme.titleLarge!.copyWith(
                                     fontWeight: FontWeight.bold,
                                     color: launch.success!
                                         ? theme.colorScheme.success
@@ -129,7 +128,7 @@ class LaunchDetailScene extends GetWidget<LaunchDetailViewModel> {
                       Text(
                         DateFormat('E, d MMM, yyyy  -  h:mm a')
                             .format(launch.launchDateLocal),
-                        style: theme.textTheme.subtitle2,
+                        style: theme.textTheme.titleSmall,
                       ),
                       _Separator(),
                       _DetailSection(
@@ -150,7 +149,7 @@ class LaunchDetailScene extends GetWidget<LaunchDetailViewModel> {
 class _DetailSection extends StatelessWidget {
   final String? _details;
 
-  const _DetailSection({String? details}) : this._details = details;
+  const _DetailSection({String? details}) : _details = details;
 
   @override
   Widget build(BuildContext context) {
@@ -161,7 +160,7 @@ class _DetailSection extends StatelessWidget {
         : Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text(
               'launchDetail.detailOfFlight',
-              style: theme.textTheme.headline5!
+              style: theme.textTheme.headlineSmall!
                   .copyWith(fontWeight: FontWeight.bold),
             ).tr(),
             _Separator(),

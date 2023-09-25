@@ -109,7 +109,7 @@ class __AnimatedLaunchesListState extends State<_AnimatedLaunchesList> {
                         child: Text(
                           launch.name,
                           textAlign: TextAlign.center,
-                          style: theme.textTheme.headline4!
+                          style: theme.textTheme.headlineMedium!
                               .copyWith(fontWeight: FontWeight.bold),
                         ),
                       );
@@ -120,7 +120,7 @@ class __AnimatedLaunchesListState extends State<_AnimatedLaunchesList> {
                 child: Text(
                   DateFormat('E, d MMM, yyyy  -  h:mm a')
                       .format(currentLaunch.launchDateLocal),
-                  style: theme.textTheme.subtitle2,
+                  style: theme.textTheme.titleSmall,
                   key: Key(currentLaunch.name),
                 ),
               ),
@@ -181,7 +181,7 @@ class __AnimatedLaunchesListState extends State<_AnimatedLaunchesList> {
                   child: Opacity(
                     opacity: opacity,
                     child: Hero(
-                      tag: "launch_image_${launch.name}",
+                      tag: 'launch_image_${launch.name}',
                       child: GestureDetector(
                         onTap: () {
                           if (result == 0.0) {

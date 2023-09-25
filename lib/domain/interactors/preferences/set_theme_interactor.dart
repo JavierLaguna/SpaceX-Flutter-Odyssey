@@ -22,7 +22,7 @@ class SetThemeInteractorImpl extends SetThemeInteractor {
     await _repositoryLocal.setTheme(selectedTheme);
   }
 
-  _modifyStatusBarColor(SpaceXTheme theme) {
+  void _modifyStatusBarColor(SpaceXTheme theme) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
       /*statusBarColor: theme == SpaceXTheme.dark // Color for Android
           ? spaceXDarkTheme.appBarTheme.color
@@ -34,7 +34,7 @@ class SetThemeInteractorImpl extends SetThemeInteractor {
     ));
   }
 
-  _modifyAppTheme(SpaceXTheme theme) {
+  void _modifyAppTheme(SpaceXTheme theme) {
     /*Get.changeTheme(
         theme == SpaceXTheme.dark ? spaceXDarkTheme : spaceXLightTheme);
         */

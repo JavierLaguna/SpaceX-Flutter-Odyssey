@@ -4,7 +4,7 @@ class LaunchImage extends StatelessWidget {
   final String _kLocalPlaceholder = 'assets/images/launch-placeholder.png';
   final String? _remoteImage;
 
-  const LaunchImage({String? remoteImage}) : this._remoteImage = remoteImage;
+  const LaunchImage({String? remoteImage}) : _remoteImage = remoteImage;
 
   @override
   Widget build(BuildContext context) {
