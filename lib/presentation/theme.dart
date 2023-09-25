@@ -42,7 +42,7 @@ final _darkTextTheme = GoogleFonts.ralewayTextTheme().apply(
   bodyColor: SpaceXColors.white,
   displayColor: SpaceXColors.white,
 );
-
+/*
 final spaceXLightTheme = ThemeData(
   brightness: Brightness.light,
   accentColor: SpaceXColors.blueGray,
@@ -64,7 +64,8 @@ final spaceXLightTheme = ThemeData(
   ),
   bottomAppBarColor: SpaceXColors.darkGray2,
 );
-
+*/
+/*
 final spaceXDarkTheme = ThemeData(
   brightness: Brightness.dark,
   accentColor: SpaceXColors.darkOrange,
@@ -95,3 +96,4 @@ final spaceXDarkTheme = ThemeData(
   ),
   bottomAppBarColor: SpaceXColors.white,
 );
+*/
