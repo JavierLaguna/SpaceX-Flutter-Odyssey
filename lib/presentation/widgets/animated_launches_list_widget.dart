@@ -176,8 +176,8 @@ class __AnimatedLaunchesListState extends State<_AnimatedLaunchesList> {
                   alignment: Alignment.bottomCenter,
                   transform: Matrix4.identity()
                     ..setEntry(3, 2, 0.001)
-                    ..translate(0.0, size.height / 2.8 * (1 - value).abs())
-                    ..scale(value),
+                      ..translateByDouble(0.0, size.height / 2.8 * (1 - value).abs(), 0.0, 1.0)
+                      ..scaleByDouble(value, value, value, 1.0),
                   child: Opacity(
                     opacity: opacity,
                     child: Hero(
