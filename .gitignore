@@ -39,3 +39,6 @@ app.*.symbols
 
 # Obfuscation related
 app.*.map.json
+
+# Google Maps API keys (do not commit)
+**/google_maps_api.xml
