@@ -22,7 +22,7 @@ class YoutubePlayerWidget extends StatelessWidget {
     return YoutubePlayer(
       controller: _controller,
       showVideoProgressIndicator: true,
-      progressIndicatorColor: Theme.of(context).toggleableActiveColor,
+      progressIndicatorColor: Theme.of(context).colorScheme.primary,
     );
   }
 }

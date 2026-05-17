@@ -25,12 +25,12 @@ dependencies:
     sdk: flutter
   http: ^1.1.0
   get: ^4.6.6
-  google_fonts: ^6.1.0
+  google_fonts: ^8.0.0
   easy_localization: ^3.0.3
   shared_preferences: ^2.2.1
   youtube_player_flutter: ^8.1.2
   enum_to_string: ^2.0.1
-  google_maps_flutter: ^2.5.0
+  google_maps_flutter: ^2.10.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -40,6 +40,9 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   pedantic: ^1.11.1
+
+dependency_overrides:
+  win32: '>=5.0.9 <6.0.0'
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

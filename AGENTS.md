@@ -10,11 +10,10 @@
 - Static checks: `flutter analyze`
 - Run tests (single file): `flutter test test/widget_test.dart`
 
-## Current baseline gotcha
-- On Flutter 3.24.3, `flutter analyze` currently fails with **2 compile errors**:
-  - `ThemeData.bottomAppBarColor` in `lib/presentation/widgets/gesture_bar_widget.dart`
-  - `ThemeData.toggleableActiveColor` in `lib/presentation/widgets/youtube_player_widget.dart`
-- Because of those compile errors, `flutter test test/widget_test.dart` also fails before test execution.
+## iOS quirks
+- App uses UISceneDelegate lifecycle (`ios/Runner/SceneDelegate.swift`) with `FlutterImplicitEngineDelegate` in `AppDelegate.swift`.
+- `pubspec.yaml` has a `dependency_overrides` for `win32: '>=5.0.9 <6.0.0'` because the transitive 5.0.8 is incompatible with Dart 3.5.3, and v6 breaks `path_provider_windows`.
+- `google_maps_flutter_ios` does not support arm64 for iOS 26+ simulators (upstream plugin limitation).
 
 ## Architecture wiring you must keep in sync
 - Routing is centralized in:
