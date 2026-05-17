@@ -137,7 +137,7 @@ class __AnimatedLaunchesListState extends State<_AnimatedLaunchesList> {
               shape: BoxShape.circle,
               boxShadow: [
                 BoxShadow(
-                  color: theme.appBarTheme.backgroundColor!,
+                  color: theme.appBarTheme.backgroundColor ?? theme.colorScheme.surface,
                   blurRadius: 90,
                   spreadRadius: 45,
                 ),
