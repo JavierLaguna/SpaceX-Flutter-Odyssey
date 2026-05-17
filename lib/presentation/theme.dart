@@ -2,25 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SpaceXColors {
-  static final black = Color(0xFF000000);
-  static final white = Color(0xFFFFFFFF); // Icons
+  static const black = Color(0xFF000000);
+  static const white = Color(0xFFFFFFFF); // Icons
 
-  static final red = Color(0xFFdc3545);
-  static final green = const Color(0xFF28a745);
-  static final blue = const Color(0xFF17a2b8);
-  static final yellow = const Color(0xFFffc107);
+  static const red = Color(0xFFdc3545);
+  static const green = Color(0xFF28a745);
+  static const blue = Color(0xFF17a2b8);
+  static const yellow = Color(0xFFffc107);
 
-  static final lightOrange = Color(0xFFFFCCBC);
-  static final orange = Color(0xFFFF5722); // Primary
-  static final darkOrange = Color(0xFFE64A19);
+  static const lightOrange = Color(0xFFFFCCBC);
+  static const orange = Color(0xFFFF5722); // Primary
+  static const darkOrange = Color(0xFFE64A19);
 
-  static final lightGray = Color(0xFFBDBDBD); // Divider
-  static final gray = Color(0xFF757575); // Secondary text
-  static final darkGray = Color(0xFF212121); // Primary text
-  static final darkGray2 = Color(0xFF323232);
+  static const lightGray = Color(0xFFBDBDBD); // Divider
+  static const gray = Color(0xFF757575); // Secondary text
+  static const darkGray = Color(0xFF212121); // Primary text
+  static const darkGray2 = Color(0xFF323232);
 
-  static final blueGray = Color(0xFF607D8B); // Accent
-  static final darkBlueGray = Color(0xFF263238);
+  static const blueGray = Color(0xFF607D8B); // Accent
+  static const darkBlueGray = Color(0xFF263238);
 }
 
 extension CustomColorScheme on ColorScheme {
@@ -42,58 +42,58 @@ final _darkTextTheme = GoogleFonts.ralewayTextTheme().apply(
   bodyColor: SpaceXColors.white,
   displayColor: SpaceXColors.white,
 );
-/*
 final spaceXLightTheme = ThemeData(
   brightness: Brightness.light,
-  accentColor: SpaceXColors.blueGray,
-  toggleableActiveColor: SpaceXColors.orange,
+  colorScheme: const ColorScheme.light(
+    primary: SpaceXColors.orange,
+    secondary: SpaceXColors.blueGray,
+  ),
   textTheme: _lightTextTheme,
-  appBarTheme: AppBarTheme(
-    color: SpaceXColors.orange,
-    textTheme: _lightTextTheme.copyWith(
-      headline6: TextStyle(
-        fontSize: 19,
-        fontWeight: FontWeight.w700,
-        color: SpaceXColors.white,
-      ),
+  appBarTheme: const AppBarTheme(
+    backgroundColor: SpaceXColors.orange,
+    titleTextStyle: TextStyle(
+      fontSize: 19,
+      fontWeight: FontWeight.w700,
+      color: SpaceXColors.white,
     ),
   ),
-  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+  bottomNavigationBarTheme: const BottomNavigationBarThemeData(
     selectedItemColor: SpaceXColors.orange,
     unselectedItemColor: SpaceXColors.blueGray,
   ),
-  bottomAppBarColor: SpaceXColors.darkGray2,
+  bottomAppBarTheme: const BottomAppBarThemeData(
+    color: SpaceXColors.darkGray2,
+  ),
 );
-*/
-/*
+
 final spaceXDarkTheme = ThemeData(
   brightness: Brightness.dark,
-  accentColor: SpaceXColors.darkOrange,
-  toggleableActiveColor: SpaceXColors.darkOrange,
+  colorScheme: const ColorScheme.dark(
+    primary: SpaceXColors.darkOrange,
+    secondary: SpaceXColors.darkOrange,
+  ),
   textTheme: _darkTextTheme,
-  appBarTheme: AppBarTheme(
-    color: SpaceXColors.darkOrange,
+  appBarTheme: const AppBarTheme(
+    backgroundColor: SpaceXColors.darkOrange,
     iconTheme: IconThemeData(
       color: SpaceXColors.darkGray,
     ),
-    textTheme: _darkTextTheme.copyWith(
-      headline6: TextStyle(
-        fontSize: 19,
-        fontWeight: FontWeight.w700,
-        color: SpaceXColors.darkGray,
-      ),
+    titleTextStyle: TextStyle(
+      fontSize: 19,
+      fontWeight: FontWeight.w700,
+      color: SpaceXColors.darkGray,
     ),
   ),
-  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+  bottomNavigationBarTheme: const BottomNavigationBarThemeData(
     selectedItemColor: SpaceXColors.darkOrange,
     unselectedItemColor: SpaceXColors.lightGray,
     backgroundColor: SpaceXColors.darkBlueGray,
   ),
-  backgroundColor: SpaceXColors.darkGray,
   scaffoldBackgroundColor: SpaceXColors.darkGray,
-  cardTheme: CardTheme(
+  cardTheme: const CardThemeData(
     color: SpaceXColors.darkGray2,
   ),
-  bottomAppBarColor: SpaceXColors.white,
+  bottomAppBarTheme: const BottomAppBarThemeData(
+    color: SpaceXColors.white,
+  ),
 );
-*/

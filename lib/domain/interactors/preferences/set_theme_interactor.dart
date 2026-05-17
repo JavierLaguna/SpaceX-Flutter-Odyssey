@@ -24,9 +24,9 @@ class SetThemeInteractorImpl extends SetThemeInteractor {
 
   void _modifyStatusBarColor(SpaceXTheme theme) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
-      /*statusBarColor: theme == SpaceXTheme.dark // Color for Android
-          ? spaceXDarkTheme.appBarTheme.color
-          : spaceXLightTheme.appBarTheme.color,*/
+      statusBarColor: theme == SpaceXTheme.dark // Color for Android
+          ? spaceXDarkTheme.appBarTheme.backgroundColor
+          : spaceXLightTheme.appBarTheme.backgroundColor,
       statusBarBrightness:
           theme == SpaceXTheme.dark // Dark == white status bar -- for IOS.
               ? Brightness.dark
@@ -35,8 +35,7 @@ class SetThemeInteractorImpl extends SetThemeInteractor {
   }
 
   void _modifyAppTheme(SpaceXTheme theme) {
-    /*Get.changeTheme(
+    Get.changeTheme(
         theme == SpaceXTheme.dark ? spaceXDarkTheme : spaceXLightTheme);
-        */
   }
 }
