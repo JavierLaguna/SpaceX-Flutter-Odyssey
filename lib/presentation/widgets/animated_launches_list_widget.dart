@@ -109,7 +109,7 @@ class __AnimatedLaunchesListState extends State<_AnimatedLaunchesList> {
                         child: Text(
                           launch.name,
                           textAlign: TextAlign.center,
-                          style: theme.textTheme.headline4!
+                          style: theme.textTheme.headlineMedium!
                               .copyWith(fontWeight: FontWeight.bold),
                         ),
                       );
@@ -120,7 +120,7 @@ class __AnimatedLaunchesListState extends State<_AnimatedLaunchesList> {
                 child: Text(
                   DateFormat('E, d MMM, yyyy  -  h:mm a')
                       .format(currentLaunch.launchDateLocal),
-                  style: theme.textTheme.subtitle2,
+                  style: theme.textTheme.titleSmall,
                   key: Key(currentLaunch.name),
                 ),
               ),
@@ -137,7 +137,7 @@ class __AnimatedLaunchesListState extends State<_AnimatedLaunchesList> {
               shape: BoxShape.circle,
               boxShadow: [
                 BoxShadow(
-                  color: theme.appBarTheme.backgroundColor!,
+                  color: theme.appBarTheme.backgroundColor ?? theme.colorScheme.surface,
                   blurRadius: 90,
                   spreadRadius: 45,
                 ),
@@ -176,12 +176,12 @@ class __AnimatedLaunchesListState extends State<_AnimatedLaunchesList> {
                   alignment: Alignment.bottomCenter,
                   transform: Matrix4.identity()
                     ..setEntry(3, 2, 0.001)
-                    ..translate(0.0, size.height / 2.8 * (1 - value).abs())
-                    ..scale(value),
+                      ..translateByDouble(0.0, size.height / 2.8 * (1 - value).abs(), 0.0, 1.0)
+                      ..scaleByDouble(value, value, value, 1.0),
                   child: Opacity(
                     opacity: opacity,
                     child: Hero(
-                      tag: "launch_image_${launch.name}",
+                      tag: 'launch_image_${launch.name}',
                       child: GestureDetector(
                         onTap: () {
                           if (result == 0.0) {

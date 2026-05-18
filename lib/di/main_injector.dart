@@ -23,6 +23,7 @@ import 'package:SpaceXFlutterOdyssey/domain/repositories/preferences/preferences
 import 'package:get/get.dart';
 
 class MainInjector extends Bindings {
+
   @override
   void dependencies() {
     _services();
@@ -31,7 +32,7 @@ class MainInjector extends Bindings {
   }
 
   // Services
-  _services() {
+  void _services() {
     Get.lazyPut<LaunchService>(
       () => LaunchService(),
     );
@@ -46,7 +47,7 @@ class MainInjector extends Bindings {
   }
 
   // Repositories
-  _repositories() {
+  void _repositories() {
     Get.lazyPut<LaunchRepositoryRemote>(() => LaunchRepositoryRemoteImpl(
           Get.find<LaunchService>(),
         ));
@@ -70,7 +71,7 @@ class MainInjector extends Bindings {
   }
 
   // Interactors
-  _interactors() {
+  void _interactors() {
     Get.lazyPut<GetUpcomingLaunchesInteractor>(
         () => GetUpcomingLaunchesInteractorImpl(
               Get.find<LaunchRepositoryRemote>(),
@@ -108,6 +109,6 @@ class MainInjector extends Bindings {
     Get.lazyPut<InitAppInteractor>(() => InitAppInteractorImpl(
           Get.find<GetThemeInteractor>(),
           Get.find<SetThemeInteractor>(),
-        ));
+    ));
   }
 }

@@ -9,7 +9,7 @@ class GestureBarWidget extends StatelessWidget {
       height: 4,
       width: MediaQuery.of(context).size.width / 3,
       decoration: BoxDecoration(
-        color: theme.bottomAppBarColor,
+        color: theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.4),
         borderRadius: BorderRadius.all(Radius.circular(2.0)),
       ),
     );

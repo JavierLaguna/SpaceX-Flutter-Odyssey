@@ -8,7 +8,7 @@ class PreferencesRepositoryLocalImpl extends PreferencesRepositoryLocal {
 
   @override
   Future<SpaceXTheme> getTheme() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var prefs = await SharedPreferences.getInstance();
     final themeString = prefs.getString(pref_key_theme);
 
     if (themeString == null) {
@@ -22,7 +22,7 @@ class PreferencesRepositoryLocalImpl extends PreferencesRepositoryLocal {
 
   @override
   Future<void> setTheme(SpaceXTheme theme) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString(pref_key_theme, EnumToString.convertToString(theme));
+    var prefs = await SharedPreferences.getInstance();
+    await prefs.setString(pref_key_theme, EnumToString.convertToString(theme));
   }
 }

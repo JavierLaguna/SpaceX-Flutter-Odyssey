@@ -23,26 +23,28 @@ class LaunchesViewModel extends GetxController {
   }
 
   // -- Public methods
-  onSelectLaunch(Launch launch) {
+  void onSelectLaunch(Launch launch) {
     _goToLaunchDetail(launch);
   }
 
   Future<void> refreshLaunches() async {
-    await _getLaunches();
-    return;
+    // TODO: JLI
+    // await _getLaunches();
+    _getLaunches();
+    // return;
   }
 
-  changeShowMode(bool isListMode) {
+  void changeShowMode(bool isListMode) {
     this.isListMode.value = isListMode;
   }
 
   // -- Private methods
-  _getLaunches() async {
+  void _getLaunches() async {
     final launches = await _getLaunchesInteractor.get();
     this.launches.assignAll(launches);
   }
 
-  _goToLaunchDetail(Launch launch) {
+  void _goToLaunchDetail(Launch launch) {
     Get.lazyPut(() => LaunchDetailViewModel(
         launch: launch,
         getLaunchpadInteractor: Get.find<GetLaunchpadInteractor>()));

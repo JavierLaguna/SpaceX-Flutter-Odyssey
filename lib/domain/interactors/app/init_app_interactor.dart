@@ -2,7 +2,7 @@ import 'package:SpaceXFlutterOdyssey/domain/interactors/preferences/get_theme_in
 import 'package:SpaceXFlutterOdyssey/domain/interactors/preferences/set_theme_interactor.dart';
 
 abstract class InitAppInteractor {
-  onInitApp();
+  void onInitApp();
 }
 
 class InitAppInteractorImpl extends InitAppInteractor {
@@ -12,7 +12,7 @@ class InitAppInteractorImpl extends InitAppInteractor {
   InitAppInteractorImpl(this._getThemeInteractor, this._setThemeInteractor);
 
   @override
-  onInitApp() {
+  void onInitApp() {
     _loadAppTheme();
   }
 

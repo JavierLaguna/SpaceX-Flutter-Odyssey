@@ -9,7 +9,7 @@ import 'package:easy_localization/easy_localization.dart';
 class LaunchesScene extends GetWidget<LaunchesViewModel> {
   LaunchesViewModel get _viewModel => super.controller;
 
-  _getBodyWidget({
+  Widget _getBodyWidget({
     required bool isListMode,
     required List<Launch> launches,
     required Function(Launch) onTapLaunch,
@@ -53,6 +53,7 @@ class LaunchesScene extends GetWidget<LaunchesViewModel> {
             duration: const Duration(milliseconds: 600),
             child: _getBodyWidget(
               isListMode: _viewModel.isListMode.value,
+              // ignore: invalid_use_of_protected_member
               launches: _viewModel.launches.value,
               onTapLaunch: _viewModel.onSelectLaunch,
               onRefresh: _viewModel.refreshLaunches,

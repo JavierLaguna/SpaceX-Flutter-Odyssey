@@ -17,13 +17,13 @@ class SettingsViewModel extends GetxController {
     _getTheme();
   }
 
-  _getTheme() async {
+  void _getTheme() async {
     final usesDarkMode = await _getThemeInteractor.usesDarkMode();
-    this.isDarkMode(usesDarkMode);
+    isDarkMode(usesDarkMode);
   }
 
-  setTheme(bool usesDarkMode) async {
-    this.isDarkMode(usesDarkMode);
+  void setTheme(bool usesDarkMode) async {
+    isDarkMode(usesDarkMode);
     await _setThemeInteractor.setDarkMode(usesDarkMode);
   }
 }

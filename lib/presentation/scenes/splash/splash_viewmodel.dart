@@ -14,7 +14,7 @@ class SplashViewModel extends GetxController {
     _initAppInteractor.onInitApp();
   }
 
-  navigateToHome() {
+  void navigateToHome() {
     Get.offNamed(SpaceXRoutes.home);
   }
 }

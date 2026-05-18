@@ -27,7 +27,7 @@ class SettingsScene extends GetWidget<SettingsViewModel> {
                     children: [
                       Text(
                         'settings.darkModeLabel',
-                        style: Theme.of(context).textTheme.subtitle1,
+                        style: Theme.of(context).textTheme.titleMedium,
                       ).tr(),
                       SizedBox(width: 40),
                       Obx(() => Switch(
