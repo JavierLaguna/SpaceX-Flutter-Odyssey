@@ -1,3 +1,5 @@
+import 'dart:io' show Platform;
+
 import 'package:SpaceXFlutterOdyssey/domain/entities/launchpad.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -7,45 +9,79 @@ class LaunchpadMap extends StatelessWidget {
   static const _mapZoom = 12.000;
 
   final Launchpad _launchpad;
+  final Set<Marker>? _markers;
+  final CameraPosition? _cameraPosition;
 
-  Set<Marker>? _markers;
-  CameraPosition? _cameraPosition;
-
-  LaunchpadMap({required Launchpad launchpad}) : _launchpad = launchpad {
-    if (launchpad.latitude != null && launchpad.longitude != null) {
-      _markers = {
-        Marker(
-            markerId: MarkerId(launchpad.id),
-            position: LatLng(launchpad.latitude!, launchpad.longitude!),
-            infoWindow:
-                InfoWindow(title: launchpad.name, snippet: launchpad.fullName))
-      };
-
-      _cameraPosition = CameraPosition(
-        target: LatLng(launchpad.latitude!, launchpad.longitude!),
-        zoom: _mapZoom,
-      );
-    }
-  }
+  LaunchpadMap({required Launchpad launchpad})
+      : _launchpad = launchpad,
+        _markers = (launchpad.latitude != null && launchpad.longitude != null)
+            ? {
+                Marker(
+                    markerId: MarkerId(launchpad.id),
+                    position:
+                        LatLng(launchpad.latitude!, launchpad.longitude!),
+                    infoWindow: InfoWindow(
+                        title: launchpad.name,
+                        snippet: launchpad.fullName))
+              }
+            : null,
+        _cameraPosition =
+            (launchpad.latitude != null && launchpad.longitude != null)
+                ? CameraPosition(
+                    target: LatLng(launchpad.latitude!, launchpad.longitude!),
+                    zoom: _mapZoom,
+                  )
+                : null;
 
   @override
   Widget build(BuildContext context) {
-    return _cameraPosition == null || _markers == null || _markers!.isEmpty
-        ? _EmptyLocation()
-        : Column(
-            children: [
-              _DetailSection(
-                launchpad: _launchpad,
-              ),
-              Expanded(
-                child: GoogleMap(
-                  markers: _markers!,
-                  mapType: MapType.normal,
-                  initialCameraPosition: _cameraPosition!,
+    final isMacOS = Platform.isMacOS;
+
+    if (_cameraPosition == null || _markers == null || _markers!.isEmpty) {
+      return _EmptyLocation();
+    }
+
+    if (isMacOS) {
+      // Google Maps doesn't support macOS; show detail + placeholder
+      return Column(
+        children: [
+          _DetailSection(launchpad: _launchpad),
+          Expanded(
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.map, size: 64, color: Colors.grey),
+                    SizedBox(height: 16),
+                    Text(
+                      'launchpadMap.notAvailableOnDesktop',
+                      textAlign: TextAlign.center,
+                    ).tr(),
+                  ],
                 ),
               ),
-            ],
-          );
+            ),
+          ),
+        ],
+      );
+    }
+
+    return Column(
+      children: [
+        _DetailSection(
+          launchpad: _launchpad,
+        ),
+        Expanded(
+          child: GoogleMap(
+            markers: _markers!,
+            mapType: MapType.normal,
+            initialCameraPosition: _cameraPosition!,
+          ),
+        ),
+      ],
+    );
   }
 }
 

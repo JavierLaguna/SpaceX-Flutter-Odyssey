@@ -10,10 +10,17 @@
 - Static checks: `flutter analyze`
 - Run tests (single file): `flutter test test/widget_test.dart`
 
-## iOS quirks
+## Platform quirks
+
+### iOS
 - App uses UISceneDelegate lifecycle (`ios/Runner/SceneDelegate.swift`) with `FlutterImplicitEngineDelegate` in `AppDelegate.swift`.
-- `pubspec.yaml` has a `dependency_overrides` for `win32: '>=5.0.9 <6.0.0'` because the transitive 5.0.8 is incompatible with Dart 3.5.3, and v6 breaks `path_provider_windows`.
 - `google_maps_flutter_ios` does not support arm64 for iOS 26+ simulators (upstream plugin limitation).
+
+### macOS
+- macOS support added via `flutter create --platforms=macos` (see `macos/` directory).
+- `google_maps_flutter` and `youtube_player_flutter` do not support macOS. The widgets `LaunchpadMap` and `YoutubePlayerWidget` check `Platform.isMacOS` at runtime and show a placeholder instead of crashing.
+- `flutter_inappwebview_macos` is available (transitive dependency) if embedded web views are needed for desktop.
+- Build: `flutter build macos --debug`, run: `flutter run -d macos`.
 
 ## Architecture wiring you must keep in sync
 - Routing is centralized in:

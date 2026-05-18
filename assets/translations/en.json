@@ -24,6 +24,7 @@
   },
   "launchpadMap": {
     "noLocationData": "Unknown launchpad location",
+    "notAvailableOnDesktop": "Map is not available on desktop",
     "attempts": "Attempts",
     "successes": "Successes"
   }
