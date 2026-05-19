@@ -24,7 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   http: ^1.1.0
-  get: ^4.6.6
+  get: ^4.7.3
   google_fonts: ^8.0.0
   easy_localization: ^3.0.3
   shared_preferences: ^2.2.1
